@@ -6,6 +6,10 @@ on:
     branches:
       - master  # 対象のプルリクエスト先ブランチを指定
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   test:
     name: Run Go Tests
@@ -28,10 +32,13 @@ jobs:
 
       # テストの実行
       - name: Run tests with coverage
-        run: go test ./... -coverprofile=coverage.out
+        run: go test ./cmd/... ./pkg/... -coverprofile=coverage.out
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+      - name: Display Coverage
+        run: |
+          go tool cover -func=coverage.out | tee coverage.txt
+
+      - name: Post Coverage Comment
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          name: coverage-report
-          path: coverage.out
+          path: coverage.txt
