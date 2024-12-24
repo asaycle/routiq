@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: pgdb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: motify
+    ports:
+      - "5432:5432"
+  envoy:
+    image: envoyproxy/envoy:v1.31.0
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml # Envoyの設定ファイルをマウント
+    ports:
+      - "8080:8080" # Envoyがリッスンするポート
+      - "9901:9901" # Envoyの管理用ポート
+    command: >
+      envoy -c /etc/envoy/envoy.yaml --log-level debug
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    #network_mode: "host"
+    #networks:
+    #  - grpc-network
+
+    #networks:
+    #  grpc-network:
+    #    driver: bridge

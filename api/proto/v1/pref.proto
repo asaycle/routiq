@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package asaycle.motify.v1;
+
+option go_package = "github.com/asaycle/motify/api/proto/v1;motify";
+
+
+service PrefService {
+	rpc ListPrefs(ListPrefsRequest) returns (ListPrefsResponse);
+}
+
+message ListPrefsRequest {
+	int32 page_size = 1;  // 1ページあたりの結果数
+	string page_token = 2; // 次のページへのトークン
+}
+  
+message ListPrefsResponse {
+	string next_page_token = 2; // 次のページへのトークン
+}
