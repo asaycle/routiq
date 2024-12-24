@@ -30,8 +30,11 @@ jobs:
       - name: Run tests with coverage
         run: go test ./... -coverprofile=coverage.out
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+      - name: Display Coverage
+        run: |
+          go tool cover -func=coverage.out | tee coverage.txt
+
+      - name: Post Coverage Comment
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          name: coverage-report
-          path: coverage.out
+          path: coverage.txt
