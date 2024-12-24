@@ -27,9 +27,6 @@ jobs:
         run: go mod tidy
 
       # テストの実行
-      - name: Run tests
-        run: go test ./... -v
-
       - name: Run tests with coverage
         run: go test ./... -coverprofile=coverage.out
 
