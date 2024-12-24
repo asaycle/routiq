@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package asaycle.routiq.v1;
+
+import "google/api/annotations.proto";
+import "google/api/resource.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
+
+service AuthService {
+  rpc ExchangeOAuthCode(ExchangeOAuthCodeRequest)
+      returns (ExchangeOAuthCodeResponse) {
+    option (google.api.http) = {
+      get : "/v1/auth/oauth/callback"
+    };
+  };
+
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
+    option (google.api.http) = {
+      post : "/v1/tokens:refresh"
+      body : "*"
+    };
+  };
+
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse) {
+    option (google.api.http) = {
+      post : "/v1/token:verify"
+      body : "*"
+    };
+  };
+}
+
+message ExchangeOAuthCodeRequest { string code = 1; }
+
+message ExchangeOAuthCodeResponse {
+  string redirect_url = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+  string role = 4;
+}
+
+message RefreshTokenRequest { string refresh_token = 1; }
+
+message RefreshTokenResponse {
+  string access_token = 1;  // アクセストークン
+  string refresh_token = 2; // リフレッシュトークン
+  int64 expires_in = 3;     // 有効期限 (秒)
+  string token_type = 4;    // トークンのタイプ (例: Bearer)
+}
+
+message VerifyTokenRequest { string access_token = 1; }
+
+message VerifyTokenResponse {
+  string user_id = 1;
+  string role = 2;
+}

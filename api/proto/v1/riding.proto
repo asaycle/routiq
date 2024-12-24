@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package asaycle.routiq.v1;
+
+import "google/api/annotations.proto";
+import "google/api/resource.proto";
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+import "v1/route.proto";
+import "v1/tag.proto";
+
+option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
+
+// Riding リソース定義
+message Riding {
+  option (google.api.resource) = {
+    type : "asaycle.routiq.v1.Route"
+    pattern : "routes/{route}/ridings/{riding}"
+    singular : "riding"
+    plural : "ridings"
+  };
+  string id = 1; // XID型の一意のID
+  string route_id = 2;
+  repeated Tag tags = 3;
+  google.type.Date date = 4;
+  string title = 5; // ルート名
+  string note = 6;
+  int32 score = 7;
+  string user_id = 8;
+  google.protobuf.Timestamp created_at = 9; // 作成日時 (ISO8601形式の文字列)
+}
+
+// RidingService 定義
+service RidingService {
+  rpc CreateRiding(CreateRidingRequest) returns (Riding);
+  rpc ListRidings(ListRidingsRequest) returns (ListRidingsResponse);
+  rpc GetRiding(GetRidingRequest) returns (Riding);
+}
+
+// CreateRiding RPC
+message CreateRidingRequest {
+  Riding riding = 1; // ライド名
+}
+
+// ListRidings RPC
+message ListRidingsRequest {
+  string filter = 1;
+  int32 page_size = 2;   // 一度に取得するルートの数
+  string page_token = 3; // 次のページを指定するトークン
+}
+
+message ListRidingsResponse {
+  repeated Riding ridings = 1;
+  string next_page_token = 2; // 次のページのトークン
+}
+
+// GetRiding RPC
+message GetRidingRequest {
+  string id = 1; // 取得するルートのID
+}
