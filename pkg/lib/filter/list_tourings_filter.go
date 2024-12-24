@@ -27,7 +27,7 @@ func init() {
 		),
 	)
 	if err != nil {
-		log.Fatalf("failed creating cel environment: %w", err)
+		log.Panicf("failed creating cel environment: %v", err)
 	}
 }
 

@@ -4,6 +4,7 @@ go 1.23.3
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.1
+	github.com/golang/mock v1.6.0
 	github.com/google/cel-go v0.22.1
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.24.0
@@ -12,7 +13,7 @@ require (
 	github.com/paulmach/go.geojson v1.5.0
 	github.com/rs/xid v1.6.0
 	github.com/spf13/cobra v1.8.1
-	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
+	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
 	google.golang.org/api v0.212.0
 	google.golang.org/genproto v0.0.0-20241206012308-a4fef0638583
 	google.golang.org/genproto/googleapis/api v0.0.0-20241118233622-e639e219e697

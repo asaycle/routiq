@@ -12,6 +12,7 @@ import (
 	"golang.org/x/xerrors"
 )
 
+//go:generate mockgen -source=route_usecase.go -destination=mocks/route_usecase.go -package=mocks
 type RouteUsecase interface {
 	CreateRoute(ctx context.Context, name string, desc string, geoJSON string) (*entity.Route, error)
 	GetRoute(ctx context.Context, name string) (*entity.Route, error)
