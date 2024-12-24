@@ -32,7 +32,7 @@ jobs:
 
       # テストの実行
       - name: Run tests with coverage
-        run: go test ./... -coverprofile=coverage.out
+        run: go test ./cmd/... ./pkg/... -coverprofile=coverage.out
 
       - name: Display Coverage
         run: |
