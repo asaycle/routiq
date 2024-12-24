@@ -4,7 +4,7 @@ name: Go Test
 on:
   pull_request:
     branches:
-      - main  # 対象のプルリクエスト先ブランチを指定
+      - master  # 対象のプルリクエスト先ブランチを指定
 
 jobs:
   test:
