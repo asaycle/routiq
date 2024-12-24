@@ -6,6 +6,10 @@ on:
     branches:
       - master  # 対象のプルリクエスト先ブランチを指定
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   test:
     name: Run Go Tests
