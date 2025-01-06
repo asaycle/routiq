@@ -8,21 +8,21 @@ import (
 	"github.com/asaycle/routiq.git/pkg/domain/repository"
 	"github.com/asaycle/routiq.git/pkg/domain/usecase"
 	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
-	"github.com/asaycle/routiq.git/pkg/server/handlers"
+	"github.com/asaycle/routiq.git/pkg/lib/config"
 	"google.golang.org/grpc"
 )
 
-func init() {
-	handlers.RegisterHandler(NewTagHandler())
+func ActivateTagHandler(s *grpc.Server, cfg *config.Config) {
+	pb.RegisterTagServiceServer(s, NewTagHandler(cfg))
 }
 
 type TagHandler struct {
 	pb.UnimplementedTagServiceServer
-
+	cfg     *config.Config
 	useCase usecase.TagUsecase
 }
 
-func NewTagHandler() *TagHandler {
+func NewTagHandler(cfg *config.Config) *TagHandler {
 	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "routiq")
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
@@ -30,12 +30,9 @@ func NewTagHandler() *TagHandler {
 	txManager := repository.NewTransactionManager(pgdb)
 	repo := repository.NewTagRepositoryImpl()
 	return &TagHandler{
+		cfg:     cfg,
 		useCase: usecase.NewTagUsecaseImpl(repo, txManager),
 	}
-}
-
-func (h *TagHandler) Register(s *grpc.Server) {
-	pb.RegisterTagServiceServer(s, h)
 }
 
 func (h *TagHandler) CreateTag(ctx context.Context, req *pb.CreateTagRequest) (*pb.Tag, error) {
