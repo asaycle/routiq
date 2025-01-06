@@ -5,12 +5,12 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/asaycle/motify.git/api/proto/v1"
-	"github.com/asaycle/motify.git/pkg/domain/entity"
-	"github.com/asaycle/motify.git/pkg/domain/repository"
-	"github.com/asaycle/motify.git/pkg/domain/usecase"
-	"github.com/asaycle/motify.git/pkg/infrastructure/db"
-	"github.com/asaycle/motify.git/pkg/server/handlers"
+	pb "github.com/asaycle/routiq.git/api/proto/v1"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/repository"
+	"github.com/asaycle/routiq.git/pkg/domain/usecase"
+	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
+	"github.com/asaycle/routiq.git/pkg/server/handlers"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 )
@@ -26,7 +26,7 @@ type TouringHandler struct {
 }
 
 func NewTouringHandler() *TouringHandler {
-	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "motify")
+	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "routiq")
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
 	}

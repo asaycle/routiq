@@ -1,62 +1,61 @@
 syntax = "proto3";
 
-package asaycle.motify.v1;
+package asaycle.routiq.v1;
 
 import "google/api/annotations.proto";
 import "google/api/resource.proto";
 import "google/protobuf/timestamp.proto";
 import "v1/tag.proto";
 
-option go_package = "github.com/asaycle/motify/api/proto/v1;motify";
+option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
 
 message TagCount {
-    Tag tag = 1;
-    int32 count = 2;
+  Tag tag = 1;
+  int32 count = 2;
 }
 
 // Route リソース定義
 message Route {
-    option (google.api.resource) = {
-        type: "asaycle.motify.v1.Route"
-        pattern: "routes/{route}"
-        singular: "route"
-        plural: "routes"
-    };
-    string id = 1;              // XID型の一意のID
-    string display_name = 2;      // ルート名
-    string description = 3;       // 説明
-    float distance = 4;
-    string feature = 5;          // GeoJSON形式で表現されるfeature
-    string google_map_url = 6;
-    repeated TagCount tag_counts = 7;
-    google.protobuf.Timestamp created_at = 8;        // 作成日時 (ISO8601形式の文字列)
+  option (google.api.resource) = {
+    type : "asaycle.routiq.v1.Route"
+    pattern : "routes/{route}"
+    singular : "route"
+    plural : "routes"
+  };
+  string id = 1;           // XID型の一意のID
+  string display_name = 2; // ルート名
+  string description = 3;  // 説明
+  float distance = 4;
+  string feature = 5; // GeoJSON形式で表現されるfeature
+  string google_map_url = 6;
+  repeated TagCount tag_counts = 7;
+  google.protobuf.Timestamp created_at = 8; // 作成日時 (ISO8601形式の文字列)
 }
 
 // RouteService 定義
 service RouteService {
-    rpc CreateRoute(CreateRouteRequest) returns (Route);
-    rpc ListRoutes(ListRoutesRequest) returns (ListRoutesResponse);
-    rpc GetRoute(GetRouteRequest) returns (Route);
+  rpc CreateRoute(CreateRouteRequest) returns (Route);
+  rpc ListRoutes(ListRoutesRequest) returns (ListRoutesResponse);
+  rpc GetRoute(GetRouteRequest) returns (Route);
 }
-  
+
 // CreateRoute RPC
 message CreateRouteRequest {
-    Route route = 1;              // ルート名
+  Route route = 1; // ルート名
 }
-  
+
 // ListRoutes RPC
 message ListRoutesRequest {
-    int32 page_size = 1;          // 一度に取得するルートの数
-    string page_token = 2;        // 次のページを指定するトークン
+  int32 page_size = 1;   // 一度に取得するルートの数
+  string page_token = 2; // 次のページを指定するトークン
 }
-  
+
 message ListRoutesResponse {
-    repeated Route routes = 1;    // ルートの一覧
-    string next_page_token = 2;   // 次のページのトークン
+  repeated Route routes = 1;  // ルートの一覧
+  string next_page_token = 2; // 次のページのトークン
 }
-  
+
 // GetRoute RPC
 message GetRouteRequest {
-    string id = 1;                // 取得するルートのID
+  string id = 1; // 取得するルートのID
 }
-  

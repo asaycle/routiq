@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	pb "github.com/asaycle/motify.git/api/proto/v1"
-	"github.com/asaycle/motify.git/pkg/domain/entity"
-	"github.com/asaycle/motify.git/pkg/domain/usecase"
-	usecasemock "github.com/asaycle/motify.git/pkg/domain/usecase/mocks"
+	pb "github.com/asaycle/routiq.git/api/proto/v1"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/usecase"
+	usecasemock "github.com/asaycle/routiq.git/pkg/domain/usecase/mocks"
 	"github.com/golang/mock/gomock"
 	"google.golang.org/protobuf/proto"
 )

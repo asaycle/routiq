@@ -2,11 +2,11 @@
 // source: v1/auth.proto
 
 /*
-Package motify is a reverse proxy.
+Package routiq is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package motify
+package routiq
 
 import (
 	"context"
@@ -127,7 +127,7 @@ func RegisterAuthServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.motify.v1.AuthService/ExchangeOAuthCode", runtime.WithHTTPPathPattern("/v1/auth/oauth/callback"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.routiq.v1.AuthService/ExchangeOAuthCode", runtime.WithHTTPPathPattern("/v1/auth/oauth/callback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -147,7 +147,7 @@ func RegisterAuthServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.motify.v1.AuthService/RefreshToken", runtime.WithHTTPPathPattern("/v1/tokens:refresh"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.routiq.v1.AuthService/RefreshToken", runtime.WithHTTPPathPattern("/v1/tokens:refresh"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -167,7 +167,7 @@ func RegisterAuthServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.motify.v1.AuthService/VerifyToken", runtime.WithHTTPPathPattern("/v1/token:verify"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.routiq.v1.AuthService/VerifyToken", runtime.WithHTTPPathPattern("/v1/token:verify"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -225,7 +225,7 @@ func RegisterAuthServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.motify.v1.AuthService/ExchangeOAuthCode", runtime.WithHTTPPathPattern("/v1/auth/oauth/callback"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.routiq.v1.AuthService/ExchangeOAuthCode", runtime.WithHTTPPathPattern("/v1/auth/oauth/callback"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -242,7 +242,7 @@ func RegisterAuthServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.motify.v1.AuthService/RefreshToken", runtime.WithHTTPPathPattern("/v1/tokens:refresh"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.routiq.v1.AuthService/RefreshToken", runtime.WithHTTPPathPattern("/v1/tokens:refresh"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -259,7 +259,7 @@ func RegisterAuthServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.motify.v1.AuthService/VerifyToken", runtime.WithHTTPPathPattern("/v1/token:verify"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.routiq.v1.AuthService/VerifyToken", runtime.WithHTTPPathPattern("/v1/token:verify"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

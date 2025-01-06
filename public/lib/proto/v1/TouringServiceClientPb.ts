@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for asaycle.motify.v1
+ * @fileoverview gRPC-Web generated client stub for asaycle.routiq.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class TouringServiceClient {
   }
 
   methodDescriptorCreateTouring = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.TouringService/CreateTouring',
+    '/asaycle.routiq.v1.TouringService/CreateTouring',
     grpcWeb.MethodType.UNARY,
     v1_touring_pb.CreateTouringRequest,
     v1_touring_pb.Touring,
@@ -68,7 +68,7 @@ export class TouringServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.TouringService/CreateTouring',
+          '/asaycle.routiq.v1.TouringService/CreateTouring',
         request,
         metadata || {},
         this.methodDescriptorCreateTouring,
@@ -76,14 +76,14 @@ export class TouringServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.TouringService/CreateTouring',
+      '/asaycle.routiq.v1.TouringService/CreateTouring',
     request,
     metadata || {},
     this.methodDescriptorCreateTouring);
   }
 
   methodDescriptorListTourings = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.TouringService/ListTourings',
+    '/asaycle.routiq.v1.TouringService/ListTourings',
     grpcWeb.MethodType.UNARY,
     v1_touring_pb.ListTouringsRequest,
     v1_touring_pb.ListTouringsResponse,
@@ -111,7 +111,7 @@ export class TouringServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.TouringService/ListTourings',
+          '/asaycle.routiq.v1.TouringService/ListTourings',
         request,
         metadata || {},
         this.methodDescriptorListTourings,
@@ -119,14 +119,14 @@ export class TouringServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.TouringService/ListTourings',
+      '/asaycle.routiq.v1.TouringService/ListTourings',
     request,
     metadata || {},
     this.methodDescriptorListTourings);
   }
 
   methodDescriptorGetTouring = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.TouringService/GetTouring',
+    '/asaycle.routiq.v1.TouringService/GetTouring',
     grpcWeb.MethodType.UNARY,
     v1_touring_pb.GetTouringRequest,
     v1_touring_pb.Touring,
@@ -154,7 +154,7 @@ export class TouringServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.TouringService/GetTouring',
+          '/asaycle.routiq.v1.TouringService/GetTouring',
         request,
         metadata || {},
         this.methodDescriptorGetTouring,
@@ -162,7 +162,7 @@ export class TouringServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.TouringService/GetTouring',
+      '/asaycle.routiq.v1.TouringService/GetTouring',
     request,
     metadata || {},
     this.methodDescriptorGetTouring);

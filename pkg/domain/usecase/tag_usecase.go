@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
-	"github.com/asaycle/motify.git/pkg/domain/repository"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/repository"
 	"golang.org/x/xerrors"
 )
 

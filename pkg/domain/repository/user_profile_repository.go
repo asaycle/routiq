@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
 	"golang.org/x/xerrors"
 )
 

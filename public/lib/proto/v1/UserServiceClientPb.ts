@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for asaycle.motify.v1
+ * @fileoverview gRPC-Web generated client stub for asaycle.routiq.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class UserServiceClient {
   }
 
   methodDescriptorGetUser = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.UserService/GetUser',
+    '/asaycle.routiq.v1.UserService/GetUser',
     grpcWeb.MethodType.UNARY,
     v1_user_pb.GetUserRequest,
     v1_user_pb.User,
@@ -68,7 +68,7 @@ export class UserServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.UserService/GetUser',
+          '/asaycle.routiq.v1.UserService/GetUser',
         request,
         metadata || {},
         this.methodDescriptorGetUser,
@@ -76,14 +76,14 @@ export class UserServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.UserService/GetUser',
+      '/asaycle.routiq.v1.UserService/GetUser',
     request,
     metadata || {},
     this.methodDescriptorGetUser);
   }
 
   methodDescriptorListUsers = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.UserService/ListUsers',
+    '/asaycle.routiq.v1.UserService/ListUsers',
     grpcWeb.MethodType.UNARY,
     v1_user_pb.ListUsersRequest,
     v1_user_pb.ListUsersResponse,
@@ -111,7 +111,7 @@ export class UserServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.UserService/ListUsers',
+          '/asaycle.routiq.v1.UserService/ListUsers',
         request,
         metadata || {},
         this.methodDescriptorListUsers,
@@ -119,7 +119,7 @@ export class UserServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.UserService/ListUsers',
+      '/asaycle.routiq.v1.UserService/ListUsers',
     request,
     metadata || {},
     this.methodDescriptorListUsers);

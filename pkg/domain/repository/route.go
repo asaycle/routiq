@@ -3,7 +3,7 @@ package repository
 import (
 	"log/slog"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
 	geojson "github.com/paulmach/go.geojson"
 	"golang.org/x/xerrors"
 )

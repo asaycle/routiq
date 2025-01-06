@@ -7,9 +7,9 @@ import (
 	"net"
 	"net/http"
 
-	pb "github.com/asaycle/motify.git/api/proto/v1"
-	_ "github.com/asaycle/motify.git/pkg/handler"
-	"github.com/asaycle/motify.git/pkg/server/handlers"
+	pb "github.com/asaycle/routiq.git/api/proto/v1"
+	_ "github.com/asaycle/routiq.git/pkg/handler"
+	"github.com/asaycle/routiq.git/pkg/server/handlers"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

@@ -4,7 +4,7 @@
 // - protoc             v5.29.1
 // source: v1/route.proto
 
-package motify
+package routiq
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RouteService_CreateRoute_FullMethodName = "/asaycle.motify.v1.RouteService/CreateRoute"
-	RouteService_ListRoutes_FullMethodName  = "/asaycle.motify.v1.RouteService/ListRoutes"
-	RouteService_GetRoute_FullMethodName    = "/asaycle.motify.v1.RouteService/GetRoute"
+	RouteService_CreateRoute_FullMethodName = "/asaycle.routiq.v1.RouteService/CreateRoute"
+	RouteService_ListRoutes_FullMethodName  = "/asaycle.routiq.v1.RouteService/ListRoutes"
+	RouteService_GetRoute_FullMethodName    = "/asaycle.routiq.v1.RouteService/GetRoute"
 )
 
 // RouteServiceClient is the client API for RouteService service.
@@ -180,7 +180,7 @@ func _RouteService_GetRoute_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RouteService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "asaycle.motify.v1.RouteService",
+	ServiceName: "asaycle.routiq.v1.RouteService",
 	HandlerType: (*RouteServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

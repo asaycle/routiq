@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for asaycle.motify.v1
+ * @fileoverview gRPC-Web generated client stub for asaycle.routiq.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class PrefServiceClient {
   }
 
   methodDescriptorListPrefs = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.PrefService/ListPrefs',
+    '/asaycle.routiq.v1.PrefService/ListPrefs',
     grpcWeb.MethodType.UNARY,
     v1_pref_pb.ListPrefsRequest,
     v1_pref_pb.ListPrefsResponse,
@@ -68,7 +68,7 @@ export class PrefServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.PrefService/ListPrefs',
+          '/asaycle.routiq.v1.PrefService/ListPrefs',
         request,
         metadata || {},
         this.methodDescriptorListPrefs,
@@ -76,7 +76,7 @@ export class PrefServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.PrefService/ListPrefs',
+      '/asaycle.routiq.v1.PrefService/ListPrefs',
     request,
     metadata || {},
     this.methodDescriptorListPrefs);

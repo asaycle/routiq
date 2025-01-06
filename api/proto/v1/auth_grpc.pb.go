@@ -4,7 +4,7 @@
 // - protoc             v5.29.1
 // source: v1/auth.proto
 
-package motify
+package routiq
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_ExchangeOAuthCode_FullMethodName = "/asaycle.motify.v1.AuthService/ExchangeOAuthCode"
-	AuthService_RefreshToken_FullMethodName      = "/asaycle.motify.v1.AuthService/RefreshToken"
-	AuthService_VerifyToken_FullMethodName       = "/asaycle.motify.v1.AuthService/VerifyToken"
+	AuthService_ExchangeOAuthCode_FullMethodName = "/asaycle.routiq.v1.AuthService/ExchangeOAuthCode"
+	AuthService_RefreshToken_FullMethodName      = "/asaycle.routiq.v1.AuthService/RefreshToken"
+	AuthService_VerifyToken_FullMethodName       = "/asaycle.routiq.v1.AuthService/VerifyToken"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -176,7 +176,7 @@ func _AuthService_VerifyToken_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "asaycle.motify.v1.AuthService",
+	ServiceName: "asaycle.routiq.v1.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

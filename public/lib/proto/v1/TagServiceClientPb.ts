@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for asaycle.motify.v1
+ * @fileoverview gRPC-Web generated client stub for asaycle.routiq.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class TagServiceClient {
   }
 
   methodDescriptorCreateTag = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.TagService/CreateTag',
+    '/asaycle.routiq.v1.TagService/CreateTag',
     grpcWeb.MethodType.UNARY,
     v1_tag_pb.CreateTagRequest,
     v1_tag_pb.Tag,
@@ -68,7 +68,7 @@ export class TagServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.TagService/CreateTag',
+          '/asaycle.routiq.v1.TagService/CreateTag',
         request,
         metadata || {},
         this.methodDescriptorCreateTag,
@@ -76,14 +76,14 @@ export class TagServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.TagService/CreateTag',
+      '/asaycle.routiq.v1.TagService/CreateTag',
     request,
     metadata || {},
     this.methodDescriptorCreateTag);
   }
 
   methodDescriptorListTags = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.TagService/ListTags',
+    '/asaycle.routiq.v1.TagService/ListTags',
     grpcWeb.MethodType.UNARY,
     v1_tag_pb.ListTagsRequest,
     v1_tag_pb.ListTagsResponse,
@@ -111,7 +111,7 @@ export class TagServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.TagService/ListTags',
+          '/asaycle.routiq.v1.TagService/ListTags',
         request,
         metadata || {},
         this.methodDescriptorListTags,
@@ -119,7 +119,7 @@ export class TagServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.TagService/ListTags',
+      '/asaycle.routiq.v1.TagService/ListTags',
     request,
     metadata || {},
     this.methodDescriptorListTags);

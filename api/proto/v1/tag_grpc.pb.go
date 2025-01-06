@@ -4,7 +4,7 @@
 // - protoc             v5.29.1
 // source: v1/tag.proto
 
-package motify
+package routiq
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TagService_CreateTag_FullMethodName = "/asaycle.motify.v1.TagService/CreateTag"
-	TagService_ListTags_FullMethodName  = "/asaycle.motify.v1.TagService/ListTags"
+	TagService_CreateTag_FullMethodName = "/asaycle.routiq.v1.TagService/CreateTag"
+	TagService_ListTags_FullMethodName  = "/asaycle.routiq.v1.TagService/ListTags"
 )
 
 // TagServiceClient is the client API for TagService service.
@@ -144,7 +144,7 @@ func _TagService_ListTags_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TagService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "asaycle.motify.v1.TagService",
+	ServiceName: "asaycle.routiq.v1.TagService",
 	HandlerType: (*TagServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

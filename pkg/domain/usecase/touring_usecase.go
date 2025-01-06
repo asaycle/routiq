@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
-	"github.com/asaycle/motify.git/pkg/domain/repository"
-	"github.com/asaycle/motify.git/pkg/lib/filter"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/repository"
+	"github.com/asaycle/routiq.git/pkg/lib/filter"
 	"golang.org/x/xerrors"
 )
 
