@@ -2,11 +2,11 @@
 // source: v1/tag.proto
 
 /*
-Package motify is a reverse proxy.
+Package routiq is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package motify
+package routiq
 
 import (
 	"context"
@@ -127,7 +127,7 @@ func RegisterTagServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.motify.v1.TagService/CreateTag", runtime.WithHTTPPathPattern("/v1/tags"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.routiq.v1.TagService/CreateTag", runtime.WithHTTPPathPattern("/v1/tags"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -147,7 +147,7 @@ func RegisterTagServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.motify.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/v1/tags"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.routiq.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/v1/tags"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -167,7 +167,7 @@ func RegisterTagServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.motify.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/asaycle.motify.v1.TagService/ListTags"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/asaycle.routiq.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/asaycle.routiq.v1.TagService/ListTags"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -225,7 +225,7 @@ func RegisterTagServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.motify.v1.TagService/CreateTag", runtime.WithHTTPPathPattern("/v1/tags"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.routiq.v1.TagService/CreateTag", runtime.WithHTTPPathPattern("/v1/tags"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -242,7 +242,7 @@ func RegisterTagServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.motify.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/v1/tags"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.routiq.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/v1/tags"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -259,7 +259,7 @@ func RegisterTagServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.motify.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/asaycle.motify.v1.TagService/ListTags"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/asaycle.routiq.v1.TagService/ListTags", runtime.WithHTTPPathPattern("/asaycle.routiq.v1.TagService/ListTags"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -278,7 +278,7 @@ func RegisterTagServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 var (
 	pattern_TagService_CreateTag_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "tags"}, ""))
 	pattern_TagService_ListTags_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "tags"}, ""))
-	pattern_TagService_ListTags_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"asaycle.motify.v1.TagService", "ListTags"}, ""))
+	pattern_TagService_ListTags_1  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"asaycle.routiq.v1.TagService", "ListTags"}, ""))
 )
 
 var (

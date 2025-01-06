@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for asaycle.motify.v1
+ * @fileoverview gRPC-Web generated client stub for asaycle.routiq.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class RouteServiceClient {
   }
 
   methodDescriptorCreateRoute = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.RouteService/CreateRoute',
+    '/asaycle.routiq.v1.RouteService/CreateRoute',
     grpcWeb.MethodType.UNARY,
     v1_route_pb.CreateRouteRequest,
     v1_route_pb.Route,
@@ -68,7 +68,7 @@ export class RouteServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.RouteService/CreateRoute',
+          '/asaycle.routiq.v1.RouteService/CreateRoute',
         request,
         metadata || {},
         this.methodDescriptorCreateRoute,
@@ -76,14 +76,14 @@ export class RouteServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.RouteService/CreateRoute',
+      '/asaycle.routiq.v1.RouteService/CreateRoute',
     request,
     metadata || {},
     this.methodDescriptorCreateRoute);
   }
 
   methodDescriptorListRoutes = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.RouteService/ListRoutes',
+    '/asaycle.routiq.v1.RouteService/ListRoutes',
     grpcWeb.MethodType.UNARY,
     v1_route_pb.ListRoutesRequest,
     v1_route_pb.ListRoutesResponse,
@@ -111,7 +111,7 @@ export class RouteServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.RouteService/ListRoutes',
+          '/asaycle.routiq.v1.RouteService/ListRoutes',
         request,
         metadata || {},
         this.methodDescriptorListRoutes,
@@ -119,14 +119,14 @@ export class RouteServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.RouteService/ListRoutes',
+      '/asaycle.routiq.v1.RouteService/ListRoutes',
     request,
     metadata || {},
     this.methodDescriptorListRoutes);
   }
 
   methodDescriptorGetRoute = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.RouteService/GetRoute',
+    '/asaycle.routiq.v1.RouteService/GetRoute',
     grpcWeb.MethodType.UNARY,
     v1_route_pb.GetRouteRequest,
     v1_route_pb.Route,
@@ -154,7 +154,7 @@ export class RouteServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.RouteService/GetRoute',
+          '/asaycle.routiq.v1.RouteService/GetRoute',
         request,
         metadata || {},
         this.methodDescriptorGetRoute,
@@ -162,7 +162,7 @@ export class RouteServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.RouteService/GetRoute',
+      '/asaycle.routiq.v1.RouteService/GetRoute',
     request,
     metadata || {},
     this.methodDescriptorGetRoute);

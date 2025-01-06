@@ -5,9 +5,9 @@ import (
 	"log"
 	"log/slog"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
-	"github.com/asaycle/motify.git/pkg/domain/repository"
-	"github.com/asaycle/motify.git/pkg/lib/maps"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/repository"
+	"github.com/asaycle/routiq.git/pkg/lib/maps"
 	geojson "github.com/paulmach/go.geojson"
 	"golang.org/x/xerrors"
 )

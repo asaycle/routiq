@@ -13,9 +13,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
-	"github.com/asaycle/motify.git/pkg/domain/repository"
-	"github.com/asaycle/motify.git/pkg/lib/token"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/repository"
+	"github.com/asaycle/routiq.git/pkg/lib/token"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/idtoken"
 )

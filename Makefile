@@ -1,5 +1,5 @@
-DB_NAME := motify
-DB_URL := postgres://root:root@localhost:5432/motify?sslmode=disable
+DB_NAME := routiq
+DB_URL := postgres://root:root@localhost:5432/routiq?sslmode=disable
 
 MIGRATION_DIR := db/migration
 

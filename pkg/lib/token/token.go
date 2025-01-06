@@ -12,7 +12,7 @@ import (
 	"golang.org/x/xerrors"
 )
 
-type MotifyClaims struct {
+type RoutiqClaims struct {
 	Role string `json:"role"`
 	jwt.RegisteredClaims
 }
@@ -20,14 +20,14 @@ type MotifyClaims struct {
 // アクセストークンの発行
 func GenerateAccessToken(userID string, role string, expiresIn time.Duration) (string, error) {
 	// クレームを設定
-	claims := &MotifyClaims{
+	claims := &RoutiqClaims{
 		Role: role,
 		RegisteredClaims: jwt.RegisteredClaims{
 			Subject:   userID,
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(expiresIn)), // 有効期限
 			IssuedAt:  jwt.NewNumericDate(time.Now()),                // 発行時刻
 			NotBefore: jwt.NewNumericDate(time.Now()),                // 有効開始時刻
-			Issuer:    "motify",                                      // 発行者名
+			Issuer:    "routiq",                                      // 発行者名
 		},
 	}
 
@@ -59,8 +59,8 @@ func GenerateSecureToken(length int) (string, error) {
 	return base64.URLEncoding.EncodeToString(b), nil
 }
 
-func VerifyToken(tokenStr string) (*MotifyClaims, error) {
-	claims := &MotifyClaims{}
+func VerifyToken(tokenStr string) (*RoutiqClaims, error) {
+	claims := &RoutiqClaims{}
 	token, err := jwt.ParseWithClaims(tokenStr, claims, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])

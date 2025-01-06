@@ -4,7 +4,7 @@
 // - protoc             v5.29.1
 // source: v1/pref.proto
 
-package motify
+package routiq
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PrefService_ListPrefs_FullMethodName = "/asaycle.motify.v1.PrefService/ListPrefs"
+	PrefService_ListPrefs_FullMethodName = "/asaycle.routiq.v1.PrefService/ListPrefs"
 )
 
 // PrefServiceClient is the client API for PrefService service.
@@ -108,7 +108,7 @@ func _PrefService_ListPrefs_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PrefService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "asaycle.motify.v1.PrefService",
+	ServiceName: "asaycle.routiq.v1.PrefService",
 	HandlerType: (*PrefServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

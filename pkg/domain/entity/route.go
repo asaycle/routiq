@@ -3,7 +3,7 @@ package entity
 import (
 	"log/slog"
 
-	pb "github.com/asaycle/motify.git/api/proto/v1"
+	pb "github.com/asaycle/routiq.git/api/proto/v1"
 	geojson "github.com/paulmach/go.geojson"
 	"github.com/rs/xid"
 	"golang.org/x/xerrors"

@@ -1,4 +1,4 @@
-module github.com/asaycle/motify.git
+module github.com/asaycle/routiq.git
 
 go 1.23.3
 

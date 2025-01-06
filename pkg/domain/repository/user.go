@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/asaycle/motify.git/pkg/domain/entity"
+import "github.com/asaycle/routiq.git/pkg/domain/entity"
 
 type User struct {
 	ID  string `db:"id"`

@@ -3,7 +3,7 @@ package entity
 import (
 	"time"
 
-	pb "github.com/asaycle/motify.git/api/proto/v1"
+	pb "github.com/asaycle/routiq.git/api/proto/v1"
 	"github.com/rs/xid"
 )
 

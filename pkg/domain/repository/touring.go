@@ -3,7 +3,7 @@ package repository
 import (
 	"time"
 
-	"github.com/asaycle/motify.git/pkg/domain/entity"
+	"github.com/asaycle/routiq.git/pkg/domain/entity"
 )
 
 type Touring struct {

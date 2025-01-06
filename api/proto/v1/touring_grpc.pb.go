@@ -4,7 +4,7 @@
 // - protoc             v5.29.1
 // source: v1/touring.proto
 
-package motify
+package routiq
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TouringService_CreateTouring_FullMethodName = "/asaycle.motify.v1.TouringService/CreateTouring"
-	TouringService_ListTourings_FullMethodName  = "/asaycle.motify.v1.TouringService/ListTourings"
-	TouringService_GetTouring_FullMethodName    = "/asaycle.motify.v1.TouringService/GetTouring"
+	TouringService_CreateTouring_FullMethodName = "/asaycle.routiq.v1.TouringService/CreateTouring"
+	TouringService_ListTourings_FullMethodName  = "/asaycle.routiq.v1.TouringService/ListTourings"
+	TouringService_GetTouring_FullMethodName    = "/asaycle.routiq.v1.TouringService/GetTouring"
 )
 
 // TouringServiceClient is the client API for TouringService service.
@@ -180,7 +180,7 @@ func _TouringService_GetTouring_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TouringService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "asaycle.motify.v1.TouringService",
+	ServiceName: "asaycle.routiq.v1.TouringService",
 	HandlerType: (*TouringServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

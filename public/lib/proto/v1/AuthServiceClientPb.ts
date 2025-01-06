@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for asaycle.motify.v1
+ * @fileoverview gRPC-Web generated client stub for asaycle.routiq.v1
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class AuthServiceClient {
   }
 
   methodDescriptorExchangeOAuthCode = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.AuthService/ExchangeOAuthCode',
+    '/asaycle.routiq.v1.AuthService/ExchangeOAuthCode',
     grpcWeb.MethodType.UNARY,
     v1_auth_pb.ExchangeOAuthCodeRequest,
     v1_auth_pb.ExchangeOAuthCodeResponse,
@@ -68,7 +68,7 @@ export class AuthServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.AuthService/ExchangeOAuthCode',
+          '/asaycle.routiq.v1.AuthService/ExchangeOAuthCode',
         request,
         metadata || {},
         this.methodDescriptorExchangeOAuthCode,
@@ -76,14 +76,14 @@ export class AuthServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.AuthService/ExchangeOAuthCode',
+      '/asaycle.routiq.v1.AuthService/ExchangeOAuthCode',
     request,
     metadata || {},
     this.methodDescriptorExchangeOAuthCode);
   }
 
   methodDescriptorRefreshToken = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.AuthService/RefreshToken',
+    '/asaycle.routiq.v1.AuthService/RefreshToken',
     grpcWeb.MethodType.UNARY,
     v1_auth_pb.RefreshTokenRequest,
     v1_auth_pb.RefreshTokenResponse,
@@ -111,7 +111,7 @@ export class AuthServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.AuthService/RefreshToken',
+          '/asaycle.routiq.v1.AuthService/RefreshToken',
         request,
         metadata || {},
         this.methodDescriptorRefreshToken,
@@ -119,14 +119,14 @@ export class AuthServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.AuthService/RefreshToken',
+      '/asaycle.routiq.v1.AuthService/RefreshToken',
     request,
     metadata || {},
     this.methodDescriptorRefreshToken);
   }
 
   methodDescriptorVerifyToken = new grpcWeb.MethodDescriptor(
-    '/asaycle.motify.v1.AuthService/VerifyToken',
+    '/asaycle.routiq.v1.AuthService/VerifyToken',
     grpcWeb.MethodType.UNARY,
     v1_auth_pb.VerifyTokenRequest,
     v1_auth_pb.VerifyTokenResponse,
@@ -154,7 +154,7 @@ export class AuthServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/asaycle.motify.v1.AuthService/VerifyToken',
+          '/asaycle.routiq.v1.AuthService/VerifyToken',
         request,
         metadata || {},
         this.methodDescriptorVerifyToken,
@@ -162,7 +162,7 @@ export class AuthServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/asaycle.motify.v1.AuthService/VerifyToken',
+      '/asaycle.routiq.v1.AuthService/VerifyToken',
     request,
     metadata || {},
     this.methodDescriptorVerifyToken);

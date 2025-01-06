@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 
-	"github.com/asaycle/motify.git/pkg/lib/config"
-	"github.com/asaycle/motify.git/pkg/server"
+	"github.com/asaycle/routiq.git/pkg/lib/config"
+	"github.com/asaycle/routiq.git/pkg/server"
 	"github.com/spf13/cobra"
 	"golang.org/x/xerrors"
 )

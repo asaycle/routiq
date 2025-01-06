@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package asaycle.motify.v1;
+package asaycle.routiq.v1;
 
 import "google/api/annotations.proto";
 import "google/api/resource.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/asaycle/motify/api/proto/v1;motify";
+option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
 
 service AuthService {
   rpc ExchangeOAuthCode(ExchangeOAuthCodeRequest)
