@@ -6,7 +6,7 @@ import (
 	"github.com/asaycle/routiq.git/pkg/domain/entity"
 )
 
-type Touring struct {
+type Riding struct {
 	ID        string    `db:"id"`
 	RouteID   string    `db:"route_id"`
 	Title     string    `db:"title"`
@@ -18,19 +18,19 @@ type Touring struct {
 	UpdatedAt time.Time `db:"updated_at"`
 }
 
-func fromTouringEntity(touring *entity.Touring) (*Touring, error) {
-	return &Touring{
-		ID:      touring.ID,
-		RouteID: touring.RouteID,
-		Title:   touring.Title,
-		Date:    touring.Date,
-		Score:   touring.Score,
-		Note:    touring.Note,
+func fromRidingEntity(riding *entity.Riding) (*Riding, error) {
+	return &Riding{
+		ID:      riding.ID,
+		RouteID: riding.RouteID,
+		Title:   riding.Title,
+		Date:    riding.Date,
+		Score:   riding.Score,
+		Note:    riding.Note,
 	}, nil
 }
 
-func toTouringEntity(model *Touring) (*entity.Touring, error) {
-	return &entity.Touring{
+func toRidingEntity(model *Riding) (*entity.Riding, error) {
+	return &entity.Riding{
 		ID:    model.ID,
 		Title: model.Title,
 		Note:  model.Note,

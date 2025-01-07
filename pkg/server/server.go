@@ -46,7 +46,7 @@ func (s *Server) startGrpcServer() error {
 	handler.ActivateAuthHandler(srv, s.cfg)
 	handler.ActivateRouteHandler(srv, s.cfg)
 	handler.ActivateTagHandler(srv, s.cfg)
-	handler.ActivateTouringHandler(srv, s.cfg)
+	handler.ActivateRidingHandler(srv, s.cfg)
 	reflection.Register(srv)
 
 	log.Printf("gRPC server is running on %s", addr)

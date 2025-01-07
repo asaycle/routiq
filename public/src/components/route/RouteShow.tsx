@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getRoute } from '../../api/routeClient';
 import RouteMap from './show/Map';
-import RouteTourings from './show/Tourings';
+import RouteRidings from './show/Ridings';
 import { Route } from '../../../lib/proto/v1/route_pb';
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Chip, Grid, CircularProgress, Link, Typography, Paper, Box, Stack } from '@mui/material';
@@ -99,7 +99,7 @@ const RouteShow: React.FC = () => {
               <Button
                 variant="contained"
                 component={RouterLink}
-                to={`/routes/${route.getId()}/tourings/new`}
+                to={`/routes/${route.getId()}/ridings/new`}
                 color="primary"
                 fullWidth
               >
@@ -143,7 +143,7 @@ const RouteShow: React.FC = () => {
       </Grid>
 
       {/* 下部セクション: ツーリング記録 */}
-      <RouteTourings route={route} />
+      <RouteRidings route={route} />
     </Box>
   );
 };

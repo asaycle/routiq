@@ -58,15 +58,15 @@ func main() {
 	}
 	log.Printf("CreateRouteResponse: %v", route)
 
-	touringClient := pb.NewTouringServiceClient(conn)
+	ridingClient := pb.NewRidingServiceClient(conn)
 	resp, err := routeClient.ListRoutes(ctx, &pb.ListRoutesRequest{})
 	if err != nil {
 		log.Fatalf("Error ListRoutes: %v", err)
 	}
 	for _, route := range resp.Routes {
 		log.Printf("Route: %v", route)
-		touring, err := touringClient.CreateTouring(ctx, &pb.CreateTouringRequest{
-			Touring: &pb.Touring{
+		riding, err := ridingClient.CreateRiding(ctx, &pb.CreateRidingRequest{
+			Riding: &pb.Riding{
 				Title:   "test",
 				RouteId: route.Id,
 				Note:    "楽しかったです",
@@ -76,10 +76,10 @@ func main() {
 			},
 		})
 		if err != nil {
-			slog.Error("failed create touring", slog.Any("err", err))
+			slog.Error("failed create riding", slog.Any("err", err))
 			continue
 		}
-		slog.Info("created touring", slog.Any("touring", touring))
+		slog.Info("created riding", slog.Any("riding", riding))
 	}
 }
 

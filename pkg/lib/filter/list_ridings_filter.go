@@ -13,7 +13,7 @@ import (
 
 var celEnv *cel.Env
 
-type TouringFilter struct {
+type RidingFilter struct {
 	RouteID string
 	UserID  string
 }
@@ -31,20 +31,20 @@ func init() {
 	}
 }
 
-func ParseListTouringsFilter(filterStr string) (*TouringFilter, error) {
+func ParseListRidingsFilter(filterStr string) (*RidingFilter, error) {
 	ast, issues := celEnv.Compile(filterStr)
 	if issues != nil && issues.Err() != nil {
 		return nil, xerrors.Errorf("Error compiling filter: %w", issues.Err())
 	}
 
-	// 評価結果を TouringFilter に変換
+	// 評価結果を RidingFilter に変換
 	// AST ノードからフィールドと値を抽出
 	extracted := make(map[string]interface{})
 	cel.AstToParsedExpr(ast)
 	if err := parseAST(ast.Expr(), extracted); err != nil {
 		return nil, xerrors.Errorf("failed to parse AST: %w", err)
 	}
-	filter := &TouringFilter{}
+	filter := &RidingFilter{}
 	if routeID, ok := extracted["route_id"]; ok {
 		filter.RouteID = routeID.(string)
 	}

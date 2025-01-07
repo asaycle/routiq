@@ -6,17 +6,17 @@ import (
 	"github.com/asaycle/routiq.git/pkg/domain/entity"
 )
 
-type TouringTag struct {
+type RidingTag struct {
 	ID        string    `db:"id"`
-	TouringID string    `db:"touring_id"`
+	RidingID  string    `db:"riding_id"`
 	TagID     string    `db:"tag_id"`
 	CreatedAt time.Time `db:"created_at"`
 }
 
-func fromTouringTagEntity(e *entity.TouringTag) (*TouringTag, error) {
-	return &TouringTag{
+func fromRidingTagEntity(e *entity.RidingTag) (*RidingTag, error) {
+	return &RidingTag{
 		ID:        e.ID,
-		TouringID: e.TouringID,
+		RidingID:  e.RidingID,
 		TagID:     e.TagID,
 		CreatedAt: e.CreatedAt,
 	}, nil

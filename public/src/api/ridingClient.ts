@@ -1,15 +1,15 @@
-import { TouringServiceClient } from '../../lib/proto/v1/TouringServiceClientPb';
+import { RidingServiceClient } from '../../lib/proto/v1/RidingServiceClientPb';
 import {
-    CreateTouringRequest,
-    ListTouringsRequest,
-    Touring,
-} from '../../lib/proto/v1/touring_pb';
+    CreateRidingRequest,
+    ListRidingsRequest,
+    Riding,
+} from '../../lib/proto/v1/riding_pb';
 import { Date as PbDate } from "../../lib/proto/google/type/date_pb"; // google-protobuf の Date 型をインポート
 import { Tag } from '../../lib/proto/v1/tag_pb';
 
 
 // gRPC-Webクライアントを初期化
-const client = new TouringServiceClient('http://localhost:8080');
+const client = new RidingServiceClient('http://localhost:8080');
 
 const toPbDate = (jsDate: Date): PbDate => {
     const pbDate = new PbDate();
@@ -19,31 +19,29 @@ const toPbDate = (jsDate: Date): PbDate => {
     return pbDate;
 };
 
-export const createTouring = async (
+export const createRiding = async (
     routeID: string | null,
     title: string,
     date: Date | null,
     score: number = 0,
     tags: Tag[],
-): Promise<Touring | null> => {
-    const touring = new Touring();
+): Promise<Riding | null> => {
+    const riding = new Riding();
     if (routeID !== null) {
-        touring.setRouteId(routeID);
+        riding.setRouteId(routeID);
     }
-    touring.setTitle(title);
+    riding.setTitle(title);
     if (date !== null) {
-        touring.setDate(toPbDate(date));
+        riding.setDate(toPbDate(date));
     }
-    touring.setScore(score);
-    touring.setTagsList(tags);
+    riding.setScore(score);
+    riding.setTagsList(tags);
 
-    console.log(touring)
-
-    const request = new CreateTouringRequest();
-    request.setTouring(touring);
+    const request = new CreateRidingRequest();
+    request.setRiding(riding);
 
     return new Promise((resolve, reject) => {
-        client.createTouring(request, {}, (err, response) => {
+        client.createRiding(request, {}, (err, response) => {
             if (err) {
                 reject(err);
             } else {
@@ -53,15 +51,15 @@ export const createTouring = async (
     });
 };
 
-export const listRouteTourings = async (routeID: string): Promise<Touring[]> => {
-    const request = new ListTouringsRequest();
+export const listRouteRidings = async (routeID: string): Promise<Riding[]> => {
+    const request = new ListRidingsRequest();
     request.setFilter(`route_id == "${routeID}"`)
     return new Promise((resolve, reject) => {
-        client.listTourings(request, {}, (err, response) => {
+        client.listRidings(request, {}, (err, response) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(response?.getTouringsList() || []);
+                resolve(response?.getRidingsList() || []);
             }
         });
     });

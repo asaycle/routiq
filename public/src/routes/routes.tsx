@@ -8,7 +8,7 @@ import TagList from '../components/tag/TagList';
 import RouteCreate from '../components/route/RouteCreate';
 import RouteList from '../components/route/RouteList';
 import RouteShow from '../components/route/RouteShow';
-import TouringCreate from '../components/touring/TouringCreate';
+import RidingCreate from '../components/riding/RidingCreate';
 
 const AppRoutes: React.FC = () => {
     return (
@@ -19,7 +19,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/routes" element={<RouteList />} />
           <Route path="/routes/new" element={<RouteCreate />} />
           <Route path="/routes/:id" element={<RouteShow />} />
-          <Route path="/routes/:routeID/tourings/:new" element={<TouringCreate />} />
+          <Route path="/routes/:id/ridings/new" element={<RidingCreate />} />
         </Routes>
     );
 }

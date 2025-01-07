@@ -11,13 +11,13 @@ import "v1/tag.proto";
 
 option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
 
-// Route リソース定義
-message Touring {
+// Riding リソース定義
+message Riding {
   option (google.api.resource) = {
     type : "asaycle.routiq.v1.Route"
-    pattern : "routes/{route}/tourings/{touring}"
-    singular : "touring"
-    plural : "tourings"
+    pattern : "routes/{route}/ridings/{riding}"
+    singular : "riding"
+    plural : "ridings"
   };
   string id = 1; // XID型の一意のID
   string route_id = 2;
@@ -30,31 +30,31 @@ message Touring {
   google.protobuf.Timestamp created_at = 9; // 作成日時 (ISO8601形式の文字列)
 }
 
-// TouringService 定義
-service TouringService {
-  rpc CreateTouring(CreateTouringRequest) returns (Touring);
-  rpc ListTourings(ListTouringsRequest) returns (ListTouringsResponse);
-  rpc GetTouring(GetTouringRequest) returns (Touring);
+// RidingService 定義
+service RidingService {
+  rpc CreateRiding(CreateRidingRequest) returns (Riding);
+  rpc ListRidings(ListRidingsRequest) returns (ListRidingsResponse);
+  rpc GetRiding(GetRidingRequest) returns (Riding);
 }
 
-// CreateRoute RPC
-message CreateTouringRequest {
-  Touring touring = 1; // ルート名
+// CreateRiding RPC
+message CreateRidingRequest {
+  Riding riding = 1; // ライド名
 }
 
-// ListTourings RPC
-message ListTouringsRequest {
+// ListRidings RPC
+message ListRidingsRequest {
   string filter = 1;
   int32 page_size = 2;   // 一度に取得するルートの数
   string page_token = 3; // 次のページを指定するトークン
 }
 
-message ListTouringsResponse {
-  repeated Touring tourings = 1;
+message ListRidingsResponse {
+  repeated Riding ridings = 1;
   string next_page_token = 2; // 次のページのトークン
 }
 
-// GetTouring RPC
-message GetTouringRequest {
+// GetRiding RPC
+message GetRidingRequest {
   string id = 1; // 取得するルートのID
 }

@@ -18,14 +18,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers';
-import { createTouring } from '../../api/touringClient';
+import { createRiding } from '../../api/ridingClient';
 import { createTag, listTags } from '../../api/tagClient';
 import { Tag } from '../../../lib/proto/v1/tag_pb';
 
-const TouringCreate: React.FC = () => {
+const RidingCreate: React.FC = () => {
     const navigate = useNavigate();
-    const { routeID } = useParams<{ routeID: string }>();
-    const validRouteID: string | null = routeID ?? null;
+    const { id } = useParams<{ id: string }>();
+    const validID: string | null = id ?? null;
     const [date, setDate] = useState<Date | null>(new Date());
     const [title, setTitle] = useState('');
     const [note, setNote] = useState('');
@@ -42,10 +42,10 @@ const TouringCreate: React.FC = () => {
 
         // サーバーへ送信する処理を追加
         try {
-            const touring = await createTouring(validRouteID, title, date, score, tags);
+            const riding = await createRiding(validID, title, date, score, tags);
             alert('ルートが作成されました');
-            console.log('Created Route:', touring);
-            navigate(`/routes/${routeID}`);
+            console.log('Created Route:', riding);
+            navigate(`/routes/${id}`);
         } catch (error) {
             console.error('Error creating route:', error);
             alert('ルートの作成中にエラーが発生しました');
@@ -217,4 +217,4 @@ const TouringCreate: React.FC = () => {
     );
 };
 
-export default TouringCreate;
+export default RidingCreate;
