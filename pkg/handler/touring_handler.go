@@ -10,38 +10,35 @@ import (
 	"github.com/asaycle/routiq.git/pkg/domain/repository"
 	"github.com/asaycle/routiq.git/pkg/domain/usecase"
 	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
-	"github.com/asaycle/routiq.git/pkg/server/handlers"
+	"github.com/asaycle/routiq.git/pkg/lib/config"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 )
 
-func init() {
-	handlers.RegisterHandler(NewTouringHandler())
+func ActivateTouringHandler(s *grpc.Server, cfg *config.Config) {
+	pb.RegisterTouringServiceServer(s, NewTouringHandler(cfg))
 }
 
 type TouringHandler struct {
 	pb.UnimplementedTouringServiceServer
-
+	cfg     *config.Config
 	useCase usecase.TouringUsecase
 }
 
-func NewTouringHandler() *TouringHandler {
+func NewTouringHandler(cfg *config.Config) *TouringHandler {
 	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "routiq")
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
 	}
 	txManager := repository.NewTransactionManager(pgdb)
 	return &TouringHandler{
+		cfg: cfg,
 		useCase: usecase.NewTouringUsecaseImpl(
 			repository.NewTouringRepositoryImpl(),
 			repository.NewRouteRepositoryImpl(),
 			txManager,
 		),
 	}
-}
-
-func (h *TouringHandler) Register(s *grpc.Server) {
-	pb.RegisterTouringServiceServer(s, h)
 }
 
 func (h *TouringHandler) CreateTouring(ctx context.Context, req *pb.CreateTouringRequest) (*pb.Touring, error) {

@@ -10,25 +10,25 @@ import (
 	"github.com/asaycle/routiq.git/pkg/domain/repository"
 	"github.com/asaycle/routiq.git/pkg/domain/usecase"
 	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
+	"github.com/asaycle/routiq.git/pkg/lib/config"
 	"github.com/asaycle/routiq.git/pkg/lib/session"
-	"github.com/asaycle/routiq.git/pkg/server/handlers"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-func init() {
-	handlers.RegisterHandler(NewRouteHandler())
-}
-
 type RouteHandler struct {
 	pb.UnimplementedRouteServiceServer
-
+	cfg     *config.Config
 	useCase usecase.RouteUsecase
 }
 
-func NewRouteHandler() *RouteHandler {
+func ActivateRouteHandler(s *grpc.Server, cfg *config.Config) {
+	pb.RegisterRouteServiceServer(s, NewRouteHandler(cfg))
+}
+
+func NewRouteHandler(cfg *config.Config) *RouteHandler {
 	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "routiq")
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
@@ -38,10 +38,6 @@ func NewRouteHandler() *RouteHandler {
 	return &RouteHandler{
 		useCase: usecase.NewRouteUsecaseImpl(repo, txManager),
 	}
-}
-
-func (h *RouteHandler) Register(s *grpc.Server) {
-	pb.RegisterRouteServiceServer(s, h)
 }
 
 func (h *RouteHandler) CreateRoute(ctx context.Context, req *pb.CreateRouteRequest) (*pb.Route, error) {

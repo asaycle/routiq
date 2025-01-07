@@ -8,27 +8,29 @@ import (
 	"github.com/asaycle/routiq.git/pkg/domain/repository"
 	"github.com/asaycle/routiq.git/pkg/domain/usecase"
 	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
-	"github.com/asaycle/routiq.git/pkg/server/handlers"
+	"github.com/asaycle/routiq.git/pkg/lib/config"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 )
 
-func init() {
-	handlers.RegisterHandler(NewAuthHandler())
+func ActivateAuthHandler(s *grpc.Server, cfg *config.Config) {
+	pb.RegisterAuthServiceServer(s, NewAuthHandler(cfg))
 }
 
 type AuthHandler struct {
 	pb.UnimplementedAuthServiceServer
+	cfg     *config.Config
 	useCase usecase.AuthUsecase
 }
 
-func NewAuthHandler() *AuthHandler {
+func NewAuthHandler(cfg *config.Config) *AuthHandler {
 	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "routiq")
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
 	}
 	txManager := repository.NewTransactionManager(pgdb)
 	return &AuthHandler{
+		cfg: cfg,
 		useCase: usecase.NewAuthUsecaseImpl(
 			repository.NewUserRepositoryImpl(),
 			repository.NewUserProfileRepositoryImpl(),
@@ -36,10 +38,6 @@ func NewAuthHandler() *AuthHandler {
 			txManager,
 		),
 	}
-}
-
-func (h *AuthHandler) Register(s *grpc.Server) {
-	pb.RegisterAuthServiceServer(s, h)
 }
 
 func (h *AuthHandler) ExchangeOAuthCode(ctx context.Context, req *pb.ExchangeOAuthCodeRequest) (*pb.ExchangeOAuthCodeResponse, error) {

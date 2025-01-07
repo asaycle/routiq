@@ -18,7 +18,7 @@ var startCmd = &cobra.Command{
 		}
 		fmt.Println("server start", cfg)
 
-		srv := server.NewServer()
+		srv := server.NewServer(cfg)
 		return srv.Start()
 	},
 }
