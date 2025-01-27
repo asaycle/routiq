@@ -1,4 +1,3 @@
-import { grpc } from "@improbable-eng/grpc-web";
 import { RouteServiceClient } from '../../lib/proto/v1/RouteServiceClientPb';
 import { CreateRouteRequest, GetRouteRequest, ListRoutesRequest, Route } from '../../lib/proto/v1/route_pb';
 import { createMetadata, handleGrpcError } from "./common";
@@ -17,6 +16,7 @@ export const createRoute = async (
   geoJson: string // GeoJSON形式の文字列
 ): Promise<Route | null> => {
   const route = new Route();
+  console.log(displayName, description, geoJson)
   route.setDisplayName(displayName);
   route.setDescription(description);
   route.setGeoJson(geoJson);
@@ -25,6 +25,7 @@ export const createRoute = async (
 
   const request = new CreateRouteRequest();
   request.setRoute(route);
+  console.log("req", request)
 
   return new Promise((resolve, reject) => {
     client.createRoute(request, createMetadata(), (err, response) => {

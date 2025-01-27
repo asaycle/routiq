@@ -3,38 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
 import { createRoute } from '../../api/routeClient';
 import GeoJsonEditor from './editor/editor';
+import { useForm, Controller } from "react-hook-form";
 
 const RouteCreate: React.FC = () => {
+    const { control, handleSubmit, setError, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const [displayName, setDisplayName] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [geoJson, setGeoJson] = useState<string>("{}");
 
-    const handleSave = async () => {
-        if (!displayName.trim()) {
-            alert('ルート名を入力してください');
-            return;
-        }
-
-        if (!geoJson) {
-            alert('ルートを作成してください');
-            return;
-        }
-
-        setIsSubmitting(true);
-
+    const onSubmit = async (data: any) => {
         try {
-            console.log("geojson", geoJson)
-            const newRoute = await createRoute(displayName, description, geoJson);
-            alert('ルートが作成されました');
-            console.log('Created Route:', newRoute);
-            navigate(`/routes/${newRoute?.getId()}`);
-        } catch (error) {
-            console.error('Error creating route:', error);
-            alert('ルートの作成中にエラーが発生しました');
-        } finally {
-            setIsSubmitting(false);
+            console.log(data, geoJson)
+            const route = await createRoute(data.displayName, data.description, geoJson);
+            navigate(`/routes/${route?.getId()}`);
+        } catch (error: any) {
         }
     };
 
@@ -44,6 +28,8 @@ const RouteCreate: React.FC = () => {
 
     return (
         <Box
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
             sx={{
                 maxWidth: '800px',
                 margin: 'auto',
@@ -57,37 +43,49 @@ const RouteCreate: React.FC = () => {
                 新しいルートを作成
             </Typography>
 
-            <Paper elevation={3} sx={{ padding: 3 }}>
-                <Box component="form" display="flex" flexDirection="column" gap={2}>
+            <Controller
+                name="displayName"
+                control={control}
+                defaultValue=""
+                rules={{ required: "ルート名は必須です。" }}
+                render={({ field }) => (
                     <TextField
+                        {...field}
                         label="ルート名"
-                        variant="outlined"
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
                         fullWidth
-                        required
+                        margin="normal"
+                        error={!!errors.display_name}
+                        helperText={errors.display_name ? (errors.display_name.message as string) : ""}
                     />
+                )}
+            />
+
+            <Controller
+                name="description"
+                control={control}
+                defaultValue=""
+                rules={{ required: "説明は必須です。" }}
+                render={({ field }) => (
                     <TextField
+                        {...field}
                         label="説明"
-                        variant="outlined"
-                        multiline
-                        rows={4}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
                         fullWidth
+                        margin="normal"
+                        error={!!errors.description}
+                        helperText={errors.description ? (errors.description.message as string) : ""}
                     />
-                </Box>
-                <Box component="section">
-                    地図上でルートを作成
-                    <GeoJsonEditor geoJson={geoJson} onGeoJsonChange={handleGeoJsonChange} />
-                </Box>
-            </Paper>
+                )}
+            />
+
+            <Box component="section">
+                地図上でルートを作成
+                <GeoJsonEditor geoJson={geoJson} onGeoJsonChange={handleGeoJsonChange} />
+            </Box>
 
             <Button
                 variant="contained"
                 color="primary"
-                onClick={handleSave}
-                disabled={isSubmitting}
+                type="submit"
                 sx={{ alignSelf: 'flex-end' }}
             >
                 {isSubmitting ? '送信中...' : 'ルートを保存'}
