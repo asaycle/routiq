@@ -50,7 +50,7 @@ func main() {
 		Route: &pb.Route{
 			DisplayName: fmt.Sprintf("Biwaichi-%d", rand.IntN(1000)),
 			Description: "初心者の登竜門",
-			Feature:     biwaIchiRoute,
+			GeoJson:     biwaIchiRoute,
 		},
 	})
 	if err != nil {
@@ -58,15 +58,15 @@ func main() {
 	}
 	log.Printf("CreateRouteResponse: %v", route)
 
-	ridingClient := pb.NewRidingServiceClient(conn)
+	touringClient := pb.NewTouringServiceClient(conn)
 	resp, err := routeClient.ListRoutes(ctx, &pb.ListRoutesRequest{})
 	if err != nil {
 		log.Fatalf("Error ListRoutes: %v", err)
 	}
 	for _, route := range resp.Routes {
 		log.Printf("Route: %v", route)
-		riding, err := ridingClient.CreateRiding(ctx, &pb.CreateRidingRequest{
-			Riding: &pb.Riding{
+		touring, err := touringClient.CreateTouring(ctx, &pb.CreateTouringRequest{
+			Touring: &pb.Touring{
 				Title:   "test",
 				RouteId: route.Id,
 				Note:    "楽しかったです",
@@ -76,10 +76,10 @@ func main() {
 			},
 		})
 		if err != nil {
-			slog.Error("failed create riding", slog.Any("err", err))
+			slog.Error("failed create touring", slog.Any("err", err))
 			continue
 		}
-		slog.Info("created riding", slog.Any("riding", riding))
+		slog.Info("created touring", slog.Any("touring", touring))
 	}
 }
 

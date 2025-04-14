@@ -7,25 +7,25 @@ import {
     Rating,
     Typography,
 } from '@mui/material';
-import { listRouteRidings } from '../../../api/ridingClient';
+import { listRouteTourings } from '../../../api/touringClient';
 import { Route } from '../../../../lib/proto/v1/route_pb';
-import { Riding } from '../../../../lib/proto/v1/riding_pb';
+import { Touring } from '../../../../lib/proto/v1/touring_pb';
 import { format } from 'date-fns';
 
-type RouteRidingsProps = {
+type RouteTouringsProps = {
     route: Route
 }
 
-const RouteRidings: React.FC<RouteRidingsProps> = ({ route }) => {
+const RouteTourings: React.FC<RouteTouringsProps> = ({ route }) => {
     const [loading, setLoading] = useState<boolean>(true);
-    const [ridings, setRidings] = useState<Riding[] | null>(null);
+    const [tourings, setTourings] = useState<Touring[] | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchRoute = async () => {
             try {
-                const resp = await listRouteRidings(route.getId() || '');
-                setRidings(resp);
+                const resp = await listRouteTourings(route.getId() || '');
+                setTourings(resp);
                 setLoading(false);
             } catch (err) {
                 setError('Failed to load route data.');
@@ -44,7 +44,7 @@ const RouteRidings: React.FC<RouteRidingsProps> = ({ route }) => {
         return <Typography color="error">{error}</Typography>;
     }
 
-    if (!ridings) {
+    if (!tourings) {
         return <Typography color="error">Route not found.</Typography>;
     }
 
@@ -54,31 +54,31 @@ const RouteRidings: React.FC<RouteRidingsProps> = ({ route }) => {
                 ライディング記録
             </Typography>
             <Box mt={2}>
-                {ridings.map((riding) => (
+                {tourings.map((touring) => (
                     <Box
-                        key={riding.getId()}
+                        key={touring.getId()}
                         display="flex"
                         flexDirection="row"
                         borderBottom="1px solid #e0e0e0"
                         paddingY="10px"
                     >
                         {/* ユーザーアイコン */}
-                        <Avatar alt={riding.getUserId()} style={{ marginRight: '10px' }}>
-                            {riding.getUserId().charAt(0)} {/* ユーザーIDの頭文字 */}
+                        <Avatar alt={touring.getUserId()} style={{ marginRight: '10px' }}>
+                            {touring.getUserId().charAt(0)} {/* ユーザーIDの頭文字 */}
                         </Avatar>
 
                         {/* ツーリング情報 */}
                         <Box flex={1}>
                             <Box display="flex" justifyContent="space-between">
                                 <Typography variant="body1" fontWeight="bold">
-                                    {riding.getTitle() || 'タイトルなし'}
+                                    {touring.getTitle() || 'タイトルなし'}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
                                 </Typography>
                             </Box>
-                            <Rating value={riding.getScore()} readOnly size="small" />
+                            <Rating value={touring.getScore()} readOnly size="small" />
                             <Typography variant="body2" mt={1}>
-                                {riding.getNote() || 'コメントなし'}
+                                {touring.getNote() || 'コメントなし'}
                             </Typography>
                         </Box>
                     </Box>
@@ -88,4 +88,4 @@ const RouteRidings: React.FC<RouteRidingsProps> = ({ route }) => {
     )
 };
 
-export default RouteRidings;
+export default RouteTourings;

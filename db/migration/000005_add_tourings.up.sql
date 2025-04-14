@@ -1,4 +1,4 @@
-CREATE TABLE ridings (
+CREATE TABLE tourings (
     id            VARCHAR(20) PRIMARY KEY, -- XID
     title         TEXT NOT NULL,           -- ツーリングタイトル
     note          TEXT,                    -- 詳細

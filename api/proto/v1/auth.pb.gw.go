@@ -42,6 +42,7 @@ func request_AuthService_ExchangeOAuthCode_0(ctx context.Context, marshaler runt
 		protoReq ExchangeOAuthCodeRequest
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}

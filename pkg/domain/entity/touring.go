@@ -7,7 +7,7 @@ import (
 	"github.com/rs/xid"
 )
 
-type Riding struct {
+type Touring struct {
 	ID      string
 	RouteID string
 	Title   string
@@ -18,15 +18,15 @@ type Riding struct {
 	UserID  string
 }
 
-func (t *Riding) ToProto() (*pb.Riding, error) {
-	return &pb.Riding{
+func (t *Touring) ToProto() (*pb.Touring, error) {
+	return &pb.Touring{
 		Id:    t.ID,
 		Title: t.Title,
 	}, nil
 }
 
-func NewRiding(routeID string, title string, date time.Time, note string, score int, tags []*Tag) *Riding {
-	return &Riding{
+func NewTouring(routeID string, title string, date time.Time, note string, score int, tags []*Tag) *Touring {
+	return &Touring{
 		ID:      xid.New().String(),
 		RouteID: routeID,
 		Title:   title,
@@ -38,17 +38,17 @@ func NewRiding(routeID string, title string, date time.Time, note string, score 
 	}
 }
 
-type RidingTag struct {
+type TouringTag struct {
 	ID        string
-	RidingID  string
+	TouringID string
 	TagID     string
 	CreatedAt time.Time
 }
 
-func NewRidingTag(ridingID string, tagID string) *RidingTag {
-	return &RidingTag{
-		ID:       xid.New().String(),
-		RidingID: ridingID,
-		TagID:    tagID,
+func NewTouringTag(touringID string, tagID string) *TouringTag {
+	return &TouringTag{
+		ID:        xid.New().String(),
+		TouringID: touringID,
+		TagID:     tagID,
 	}
 }

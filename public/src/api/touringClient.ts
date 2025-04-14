@@ -1,15 +1,15 @@
-import { RidingServiceClient } from '../../lib/proto/v1/RidingServiceClientPb';
+import { TouringServiceClient } from '../../lib/proto/v1/TouringServiceClientPb';
 import {
-    CreateRidingRequest,
-    ListRidingsRequest,
-    Riding,
-} from '../../lib/proto/v1/riding_pb';
+    CreateTouringRequest,
+    ListTouringsRequest,
+    Touring,
+} from '../../lib/proto/v1/touring_pb';
 import { Date as PbDate } from "../../lib/proto/google/type/date_pb"; // google-protobuf の Date 型をインポート
 import { Tag } from '../../lib/proto/v1/tag_pb';
 
 
 // gRPC-Webクライアントを初期化
-const client = new RidingServiceClient('http://localhost:8080');
+const client = new TouringServiceClient('http://localhost:8080');
 
 const toPbDate = (jsDate: Date): PbDate => {
     const pbDate = new PbDate();
@@ -19,29 +19,29 @@ const toPbDate = (jsDate: Date): PbDate => {
     return pbDate;
 };
 
-export const createRiding = async (
+export const createTouring = async (
     routeID: string | null,
     title: string,
     date: Date | null,
     score: number = 0,
     tags: Tag[],
-): Promise<Riding | null> => {
-    const riding = new Riding();
+): Promise<Touring | null> => {
+    const touring = new Touring();
     if (routeID !== null) {
-        riding.setRouteId(routeID);
+        touring.setRouteId(routeID);
     }
-    riding.setTitle(title);
+    touring.setTitle(title);
     if (date !== null) {
-        riding.setDate(toPbDate(date));
+        touring.setDate(toPbDate(date));
     }
-    riding.setScore(score);
-    riding.setTagsList(tags);
+    touring.setScore(score);
+    touring.setTagsList(tags);
 
-    const request = new CreateRidingRequest();
-    request.setRiding(riding);
+    const request = new CreateTouringRequest();
+    request.setTouring(touring);
 
     return new Promise((resolve, reject) => {
-        client.createRiding(request, {}, (err, response) => {
+        client.createTouring(request, {}, (err, response) => {
             if (err) {
                 reject(err);
             } else {
@@ -51,15 +51,15 @@ export const createRiding = async (
     });
 };
 
-export const listRouteRidings = async (routeID: string): Promise<Riding[]> => {
-    const request = new ListRidingsRequest();
+export const listRouteTourings = async (routeID: string): Promise<Touring[]> => {
+    const request = new ListTouringsRequest();
     request.setFilter(`route_id == "${routeID}"`)
     return new Promise((resolve, reject) => {
-        client.listRidings(request, {}, (err, response) => {
+        client.listTourings(request, {}, (err, response) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(response?.getRidingsList() || []);
+                resolve(response?.getTouringsList() || []);
             }
         });
     });
