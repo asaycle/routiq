@@ -13,17 +13,13 @@ import (
 )
 
 func TestRouteHandler_CreateRoute(t *testing.T) {
-	ctrl := gomock.NewController(t)
-	defer ctrl.Finish()
-
 	type fields struct {
 		UnimplementedRouteServiceServer pb.UnimplementedRouteServiceServer
-		useCase                         usecase.RouteUsecase
+		usecaseMockGen                  func(ctrl *gomock.Controller) usecase.RouteUsecase
 	}
 	type args struct {
-		ctx          context.Context
-		req          *pb.CreateRouteRequest
-		mockBehavior func(mock *usecasemock.MockRouteUsecase)
+		ctx context.Context
+		req *pb.CreateRouteRequest
 	}
 	tests := []struct {
 		name    string
@@ -36,17 +32,8 @@ func TestRouteHandler_CreateRoute(t *testing.T) {
 		{
 			name: "success",
 			fields: fields{
-				useCase: usecasemock.NewMockRouteUsecase(ctrl),
-			},
-			args: args{
-				ctx: context.Background(),
-				req: &pb.CreateRouteRequest{
-					Route: &pb.Route{
-						DisplayName: "name-1",
-						Description: "desc-1",
-					},
-				},
-				mockBehavior: func(mock *usecasemock.MockRouteUsecase) {
+				usecaseMockGen: func(ctrl *gomock.Controller) usecase.RouteUsecase {
+					mock := usecasemock.NewMockRouteUsecase(ctrl)
 					mock.EXPECT().CreateRoute(
 						gomock.Any(),
 						"name-1",
@@ -57,6 +44,17 @@ func TestRouteHandler_CreateRoute(t *testing.T) {
 						Name:        "name-1",
 						Description: "desc-1",
 					}, nil)
+					return mock
+				},
+			},
+			args: args{
+				ctx: context.Background(),
+				req: &pb.CreateRouteRequest{
+					Route: &pb.Route{
+						DisplayName: "name-1",
+						Description: "desc-1",
+						GeoJson:     "{}",
+					},
 				},
 			},
 			want: &pb.Route{
@@ -69,11 +67,13 @@ func TestRouteHandler_CreateRoute(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
 			h := &RouteHandler{
 				UnimplementedRouteServiceServer: pb.UnimplementedRouteServiceServer{},
-				useCase:                         tt.fields.useCase,
+				useCase:                         tt.fields.usecaseMockGen(ctrl),
 			}
-			tt.args.mockBehavior(tt.fields.useCase.(*usecasemock.MockRouteUsecase))
 			got, err := h.CreateRoute(tt.args.ctx, tt.args.req)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("RouteHandler.CreateRoute() error = %v, wantErr %v", err, tt.wantErr)

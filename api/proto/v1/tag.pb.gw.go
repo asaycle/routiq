@@ -66,6 +66,7 @@ func request_TagService_ListTags_0(ctx context.Context, marshaler runtime.Marsha
 		protoReq ListTagsRequest
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}

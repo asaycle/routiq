@@ -83,12 +83,12 @@ func validateCreateRouteRequest(req *pb.CreateRouteRequest) error {
 	}
 
 	if len(fieldViolations) > 0 {
-		slog.Error("Failed to add details to error", fieldViolations)
+		slog.Error("Failed to add details to error", slog.Any("violations", fieldViolations))
 		st := status.New(codes.InvalidArgument, "Validation failed")
 		br := &errdetails.BadRequest{FieldViolations: fieldViolations}
 		stWithDetails, err := st.WithDetails(br)
 		if err != nil {
-			slog.Error("Failed to add details to error", err)
+			slog.Error("Failed to add details to error", slog.Any("err", err))
 		}
 		slog.Error("error", slog.Any("err", stWithDetails.Err()))
 		return stWithDetails.Err()

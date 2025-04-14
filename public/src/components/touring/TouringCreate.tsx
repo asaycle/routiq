@@ -18,11 +18,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers';
-import { createRiding } from '../../api/ridingClient';
+import { createTouring } from '../../api/touringClient';
 import { createTag, listTags } from '../../api/tagClient';
 import { Tag } from '../../../lib/proto/v1/tag_pb';
 
-const RidingCreate: React.FC = () => {
+const TouringCreate: React.FC = () => {
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const validID: string | null = id ?? null;
@@ -42,9 +42,9 @@ const RidingCreate: React.FC = () => {
 
         // サーバーへ送信する処理を追加
         try {
-            const riding = await createRiding(validID, title, date, score, tags);
+            const touring = await createTouring(validID, title, date, score, tags);
             alert('ルートが作成されました');
-            console.log('Created Route:', riding);
+            console.log('Created Route:', touring);
             navigate(`/routes/${id}`);
         } catch (error) {
             console.error('Error creating route:', error);
@@ -217,4 +217,4 @@ const RidingCreate: React.FC = () => {
     );
 };
 
-export default RidingCreate;
+export default TouringCreate;
