@@ -13,34 +13,11 @@ services:
     ports:
       - "5432:5432"
 
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile.backend
-    container_name: backend
-    command: ./app
-    environment:
-      - ENV=production
-    depends_on:
-      - postgres
-
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    container_name: frontend
-    command: npm run start:prod
-    environment:
-      - NODE_ENV=production
-
   envoy:
     image: envoyproxy/envoy:v1.31.0
     volumes:
       - ./envoy.yaml:/etc/envoy/envoy.yaml
     ports:
-      - "80:${ENVOY_PORT}"
+      - "8080:${ENVOY_PORT}"
       - "9901:9901"
     command: envoy -c /etc/envoy/envoy.yaml --log-level debug
-    depends_on:
-      - backend
-      - frontend

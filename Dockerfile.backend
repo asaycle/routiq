@@ -1,0 +1,22 @@
+# Dockerfile.backend
+
+# ビルドステージ
+FROM golang:1.23.4 AS builder
+
+WORKDIR /app
+
+COPY ./backend/go.mod ./backend/go.sum ./
+RUN go mod download
+
+COPY ./backend .
+
+RUN go build -o app main.go
+
+# 実行ステージ
+FROM gcr.io/distroless/base
+
+WORKDIR /app
+
+COPY --from=builder /app/app .
+
+CMD ["./app"]
