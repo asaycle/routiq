@@ -52,5 +52,5 @@ jobs:
           script: |
             cd /home/ubuntu
             gunzip -f routiq-images.tar.gz
-            sudo docker load < routiq-images.tar
-            sudo docker compose -f docker-compose.yml up -d
+            docker load < routiq-images.tar
+            docker compose -f docker-compose.yml up -d
