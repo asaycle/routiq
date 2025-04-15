@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.pgdb
+    image: pgdb
     container_name: pgdb
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
