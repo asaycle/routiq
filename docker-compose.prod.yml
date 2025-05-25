@@ -31,9 +31,8 @@ services:
       dockerfile: docker/frontend/Dockerfile
     image: ghcr.io/asaycle/routiq-frontend:latest
     container_name: frontend
-    command: [ "npm", "run", "start" ]
-    environment:
-      - NODE_ENV=production
+    ports:
+      - "80:80"
 
   envoy:
     image: envoyproxy/envoy:v1.31.0
