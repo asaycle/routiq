@@ -2,7 +2,7 @@ import { TagServiceClient } from '../../lib/proto/v1/TagServiceClientPb';
 import { CreateTagRequest, ListTagsRequest, Tag } from '../../lib/proto/v1/tag_pb';
 
 // gRPC-Webクライアントを初期化
-const client = new TagServiceClient('http://localhost:8080');
+const client = new TagServiceClient(process.env.REACT_APP_API_BASE!);
 
 export const createTag = async (
   name: string,

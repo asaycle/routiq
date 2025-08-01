@@ -9,7 +9,7 @@ import { Tag } from '../../lib/proto/v1/tag_pb';
 
 
 // gRPC-Webクライアントを初期化
-const client = new TouringServiceClient('http://localhost:8080');
+const client = new TouringServiceClient(process.env.REACT_APP_API_BASE!);
 
 const toPbDate = (jsDate: Date): PbDate => {
     const pbDate = new PbDate();

@@ -3,7 +3,7 @@ import { CreateRouteRequest, GetRouteRequest, ListRoutesRequest, Route } from '.
 import { createMetadata, handleGrpcError } from "./common";
 
 // gRPC-Webクライアントを初期化
-const client = new RouteServiceClient('http://localhost:8080', null, {
+const client = new RouteServiceClient(process.env.REACT_APP_API_BASE!, null, {
   withCredentials: true
 });
 

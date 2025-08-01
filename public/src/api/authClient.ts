@@ -7,7 +7,7 @@ import {
 } from '../../lib/proto/v1/auth_pb';
 
 // gRPC-Webクライアントを初期化
-const client = new AuthServiceClient('http://localhost:8080');
+const client = new AuthServiceClient(process.env.REACT_APP_API_BASE!);
 
 export const exchangeOAuthCode = async (
   code: string
