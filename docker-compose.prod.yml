@@ -14,36 +14,46 @@ services:
     ports:
       - "5432:5432"
 
-  backend:
-    build:
-      context: .
-      dockerfile: docker/backend/Dockerfile
-    image: ghcr.io/asaycle/routiq-backend:latest
-    container_name: backend
-    environment:
-      - ENV=production
-    depends_on:
-      - postgres
-
-  frontend:
-    build:
-      context: .
-      dockerfile: docker/frontend/Dockerfile
-    image: ghcr.io/asaycle/routiq-frontend:latest
-    container_name: frontend
-    ports:
-      - "80:80"
-
   envoy:
-    image: envoyproxy/envoy:v1.31.0
-    volumes:
-      - ./docker/envoy/envoy.yaml:/etc/envoy/envoy.yaml
-      - /etc/letsencrypt/live/routiq.jp:/etc/envoy/certs/live:ro
-      - /etc/letsencrypt/archive/routiq.jp:/etc/envoy/certs/archive:ro
+    image: envoyproxy/envoy:v1.35-latest
+    container_name: envoy
     ports:
-      - "80:${ENVOY_PORT}"
-      - "9901:9901"
-    command: envoy -c /etc/envoy/envoy.yaml --log-level debug
+      - "443:443"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - /etc/letsencrypt/archive/routiq.jp:/etc/certs/routiq.jp:ro
+      - /etc/letsencrypt/archive/api.routiq.jp:/etc/certs/api.routiq.jp:ro
     depends_on:
-      - backend
-      - frontend
+      - react
+      - grpc-server
+    networks:
+      - app-network
+
+  react:
+    image: nginx:alpine
+    container_name: react
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    expose:
+      - "80"
+    networks:
+      - app-network
+
+  grpc-server:
+    image: ghcr.io/asaycle/routiq-backend:latest
+    container_name: grpc-server
+    restart: always
+    expose:
+      - "50051"
+    networks:
+      - app-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  app-network:
+    driver: bridge
+

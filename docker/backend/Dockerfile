@@ -11,9 +11,10 @@ RUN go mod download
 COPY . .
 
 RUN go build -o app ./cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app ./cmd/main.go
 
 # 実行ステージ
-FROM gcr.io/distroless/base
+FROM alpine
 
 WORKDIR /app
 
