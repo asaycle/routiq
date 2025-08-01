@@ -24,25 +24,28 @@ services:
       - /etc/letsencrypt/archive/routiq.jp:/etc/certs/routiq.jp:ro
       - /etc/letsencrypt/archive/api.routiq.jp:/etc/certs/api.routiq.jp:ro
     depends_on:
-      - react
-      - grpc-server
+      - frontend
+      - backend
     networks:
       - app-network
 
-  react:
-    image: nginx:alpine
-    container_name: react
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+    image: ghcr.io/asaycle/routiq-frontend:latest
+    container_name: frontend
     volumes:
-      - ./dist:/usr/share/nginx/html
+      #- ./dist:/usr/share/nginx/html
       - ./docker/frontend/nginx.conf:/etc/nginx/conf.d/default.conf
     expose:
       - "80"
     networks:
       - app-network
 
-  grpc-server:
+  backend:
     image: ghcr.io/asaycle/routiq-backend:latest
-    container_name: grpc-server
+    container_name: backend
     restart: always
     expose:
       - "50051"
