@@ -24,9 +24,36 @@ static_resources:
                             cluster: react_static
                     - name: grpc_backend
                       domains: ["api.routiq.jp"]
+                      cors:
+                        allow_origin_string_match:
+                          - exact: "https://routiq.jp"
+                        allow_methods: "POST, OPTIONS"
+                        allow_headers: "content-type,x-grpc-web,x-user-agent"
+                        max_age: "86400"
+                        allow_credentials: true
                       routes:
                         - match:
+                            prefix: "/asaycle.routiq.v1.AuthService/"
+                          route:
+                            cluster: grpc_backend
+                        - match:
+                            prefix: "/asaycle.routiq.v1.PrefService/"
+                          route:
+                            cluster: grpc_backend
+                        - match:
                             prefix: "/asaycle.routiq.v1.RouteService/"
+                          route:
+                            cluster: grpc_backend
+                        - match:
+                            prefix: "/asaycle.routiq.v1.TagService/"
+                          route:
+                            cluster: grpc_backend
+                        - match:
+                            prefix: "/asaycle.routiq.v1.TouringService/"
+                          route:
+                            cluster: grpc_backend
+                        - match:
+                            prefix: "/asaycle.routiq.v1.UserService/"
                           route:
                             cluster: grpc_backend
                 http_filters:
