@@ -79,8 +79,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.GOOGLE_CLIENT_ID': JSON.stringify(process.env.GOOGLE_CLIENT_ID),
-      'process.env.GOOGLE_CLIENT_SECRET': JSON.stringify(process.env.GOOGLE_CLIENT_SECRET),
-      'process.env.REDIRET_URI': JSON.stringify(process.env.REDIRECT_URI),
+      'process.env.REDIRECT_URI': JSON.stringify(process.env.REDIRECT_URI),
       'process.env.REACT_APP_API_BASE': JSON.stringify(process.env.REACT_APP_API_BASE),
     }),
   ],
