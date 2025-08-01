@@ -85,4 +85,5 @@ module.exports = {
 };
 
 
+console.log("REDIRECT_URI = ", process.env.REDIRECT_URI);
 console.log("REACT_APP_API_BASE = ", process.env.REACT_APP_API_BASE);
