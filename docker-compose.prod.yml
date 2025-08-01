@@ -34,6 +34,7 @@ services:
     container_name: react
     volumes:
       - ./dist:/usr/share/nginx/html
+      - ./docker/frontend/nginx.conf:/etc/nginx/conf.d/default.conf
     expose:
       - "80"
     networks:
