@@ -65,7 +65,7 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: react
+                      address: frontend
                       port_value: 80
 
     - name: grpc_backend
@@ -80,6 +80,6 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-                      address: grpc-server
+                      address: backend
                       port_value: 50051
 
