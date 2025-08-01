@@ -33,10 +33,10 @@ jobs:
 
       - name: Write .env.production
         run: |
-          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" > .env.production
-          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env.production
-          echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> .env.production
-          echo "REACT_APP_API_BASE=${{ secrets.REACT_APP_API_BASE }}"  >> .env.production
+          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
+          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env
+          echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> .env
+          echo "REACT_APP_API_BASE=${{ secrets.REACT_APP_API_BASE }}"  >> .env
       
       - name: Build Docker images
         run: |
