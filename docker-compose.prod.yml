@@ -20,7 +20,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./docker/envoy/envoy.prod.yaml:/etc/envoy/envoy.yaml
       - /etc/letsencrypt/archive/routiq.jp:/etc/certs/routiq.jp:ro
       - /etc/letsencrypt/archive/api.routiq.jp:/etc/certs/api.routiq.jp:ro
     depends_on:
