@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 	"log"
+	"os"
 	"time"
 
 	pb "github.com/asaycle/routiq.git/api/proto/v1"
@@ -26,7 +27,13 @@ type TouringHandler struct {
 }
 
 func NewTouringHandler(cfg *config.Config) *TouringHandler {
-	pgdb, err := db.NewPgDB("localhost", 5432, "root", "root", "routiq")
+	pgdb, err := db.NewPgDB(
+		os.Getenv("POSTGRES_HOST"),
+		5432,
+		os.Getenv("POSTGRES_USER"),
+		os.Getenv("POSTGRES_PASSWORD"),
+		os.Getenv("POSTGRES_DB"),
+	)
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
 	}
