@@ -52,6 +52,8 @@ services:
     restart: always
     environment:
       - ENV=production
+    env_file:
+      - .env
     expose:
       - "50051"
     networks:
