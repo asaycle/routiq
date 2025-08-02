@@ -51,7 +51,7 @@ services:
     container_name: backend
     restart: always
     environment:
-      - POSTGRES_HOST=pgdb
+      - POSTGRES_HOST=postgres
       - ENV=production
     env_file:
       - .env
