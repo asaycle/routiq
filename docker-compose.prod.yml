@@ -44,9 +44,14 @@ services:
       - app-network
 
   backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
     image: ghcr.io/asaycle/routiq-backend:latest
     container_name: backend
     restart: always
+    environment:
+      - ENV=production
     expose:
       - "50051"
     networks:
