@@ -70,6 +70,8 @@ func (u *AuthUsecaseImpl) CreateUser(ctx context.Context, code string) (*CreateU
 	clientSecret, _ := os.LookupEnv("GOOGLE_CLIENT_SECRET")
 	redirectURI, _ := os.LookupEnv("REDIRECT_URI")
 
+	log.Printf("clientID: %s, clientSecret: %s, redirectURI: %s", clientID, clientSecret, redirectURI)
+
 	data2 := pkgurl.Values{}
 	data2.Set("code", code)
 	data2.Set("client_id", clientID)
