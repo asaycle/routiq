@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq" // PostgreSQL ドライバ
@@ -12,5 +13,6 @@ func NewPgDB(host string, port int, user, password, dbname string) (*sqlx.DB, er
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname,
 	)
+	log.Printf("NewPgdb: %s", dsn)
 	return sqlx.Open("postgres", dsn)
 }
