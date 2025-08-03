@@ -18,7 +18,8 @@ const LoginPage: React.FC = () => {
 };
 
 const LoginButton: React.FC = () => {
-    const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${CONFIG.GOOGLE_CLIENT_ID}&redirect_uri=${CONFIG.REDIRECT_URI}&scope=openid email profile`;
+    //const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${CONFIG.GOOGLE_CLIENT_ID}&redirect_uri=${CONFIG.REDIRECT_URI}&scope=openid email profile`;
+    const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${CONFIG.GOOGLE_CLIENT_ID}&redirect_uri=${CONFIG.REDIRECT_URI}&scope=openid profile`;
 
     const handleLogin = () => {
         console.log(authUrl)
