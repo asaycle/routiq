@@ -18,6 +18,9 @@ FROM alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/app .
+COPY --from=builder /app/app /app/app
+COPY ./db/migration /app/migrations
+COPY ./entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
-CMD ["./app", "server", "start"]
+ENTRYPOINT ["/app/entrypoint.sh"]
