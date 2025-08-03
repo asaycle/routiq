@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/asaycle/routiq.git/cmd/db"
 	"github.com/asaycle/routiq.git/cmd/server"
 	"github.com/spf13/cobra"
 )
@@ -18,6 +19,7 @@ var routiqCmd = &cobra.Command{
 
 func init() {
 	routiqCmd.AddCommand(server.Command())
+	routiqCmd.AddCommand(db.Command())
 }
 
 func main() {
