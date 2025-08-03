@@ -43,6 +43,9 @@ jobs:
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}"  >> .env
           echo "DATABASE_URL=postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@postgres:5432/${{ secrets.POSTGRES_DB }}?sslmode=disable"  >> .env
           echo "TEST_URL=postgres"  >> .env
+
+      - name: Show .env contents
+        run: cat .env
       
       - name: Build Docker images
         run: |
