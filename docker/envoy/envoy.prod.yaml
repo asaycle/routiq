@@ -28,7 +28,7 @@ static_resources:
                         allow_origin_string_match:
                           - exact: "https://routiq.jp"
                         allow_methods: "POST, OPTIONS"
-                        allow_headers: "content-type,x-grpc-web,x-user-agent"
+                        allow_headers: "content-type,x-grpc-web,x-user-agent,authorization"
                         max_age: "86400"
                         allow_credentials: true
                       routes:
