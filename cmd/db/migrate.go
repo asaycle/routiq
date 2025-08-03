@@ -21,7 +21,7 @@ var migrateCmd = &cobra.Command{
 			return nil
 		}
 		m, err := migrate.New(
-			"file://db/migration",
+			"file://migrations",
 			dbURL,
 		)
 		if err != nil {
