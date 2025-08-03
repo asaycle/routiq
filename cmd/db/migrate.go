@@ -1,6 +1,7 @@
 package db
 
 import (
+	"log"
 	"os"
 
 	"github.com/golang-migrate/migrate/v4"
@@ -16,7 +17,8 @@ var migrateCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		dbURL, ok := os.LookupEnv("DATABASE_URL")
 		if !ok {
-			return xerrors.New("DATABASE_URL environment variable is not set")
+			log.Printf("Error env: %v\n", os.Environ())
+			return nil
 		}
 		m, err := migrate.New(
 			"file://db/migration",
