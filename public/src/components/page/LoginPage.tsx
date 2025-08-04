@@ -7,7 +7,7 @@ const LoginPage: React.FC = () => {
     return (
         <Container maxWidth="sm" style={{ textAlign: 'center', marginTop: '100px' }}>
             <Typography variant="h4" gutterBottom>
-                Motifyにログイン
+                Routiqにログイン
             </Typography>
             <Typography variant="body1" gutterBottom>
                 Googleアカウントで簡単にログインできます。
@@ -18,7 +18,6 @@ const LoginPage: React.FC = () => {
 };
 
 const LoginButton: React.FC = () => {
-    //const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${CONFIG.GOOGLE_CLIENT_ID}&redirect_uri=${CONFIG.REDIRECT_URI}&scope=openid email profile`;
     const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${CONFIG.GOOGLE_CLIENT_ID}&redirect_uri=${CONFIG.REDIRECT_URI}&scope=openid profile`;
 
     const handleLogin = () => {

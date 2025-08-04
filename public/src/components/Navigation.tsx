@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { useRole } from '../contexts/RoleContext';
 
 const Navigation: React.FC = () => {
-    const { role, logout } = useRole();
-    return (
-  <AppBar position="static">
+  const { role, logout } = useRole();
+  return (
+    <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Motify
+          Routiq
         </Typography>
         <Button color="inherit" component={Link} to="/">
           Home
