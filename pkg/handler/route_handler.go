@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"log/slog"
-	"os"
 
 	pb "github.com/asaycle/routiq.git/api/proto/v1"
 	"github.com/asaycle/routiq.git/pkg/domain/repository"
@@ -31,13 +30,7 @@ func ActivateRouteHandler(s *grpc.Server, cfg *config.Config) {
 }
 
 func NewRouteHandler(cfg *config.Config) *RouteHandler {
-	pgdb, err := db.NewPgDB(
-		os.Getenv("POSTGRES_HOST"),
-		5432,
-		os.Getenv("POSTGRES_USER"),
-		os.Getenv("POSTGRES_PASSWORD"),
-		os.Getenv("POSTGRES_DB"),
-	)
+	pgdb, err := db.NewPgDBFromCfg(&cfg.DB)
 	if err != nil {
 		log.Panic("failed initialize pgdb", err)
 	}
