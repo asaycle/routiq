@@ -2,11 +2,10 @@ package server
 
 import (
 	"context"
+	"log"
 	"log/slog"
 	"strings"
 	"time"
-
-	"log"
 
 	"github.com/asaycle/routiq.git/pkg/lib/session"
 	"github.com/asaycle/routiq.git/pkg/lib/token"

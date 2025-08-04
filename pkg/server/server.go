@@ -7,6 +7,7 @@ import (
 
 	"github.com/asaycle/routiq.git/pkg/handler"
 	"github.com/asaycle/routiq.git/pkg/lib/config"
+	"github.com/asaycle/routiq.git/pkg/sentry"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -35,10 +36,12 @@ func (s *Server) startGrpcServer() error {
 
 	srv := grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
+			sentry.SentryUnaryInterceptor(),
 			authInterceptor,
 			UnaryInterceptor,
 		),
 		grpc.ChainStreamInterceptor(
+			sentry.SentryStreamInterceptor(),
 			StreamInterceptor,
 		),
 	)
