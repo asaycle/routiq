@@ -3,6 +3,7 @@ module github.com/asaycle/routiq.git
 go 1.23.3
 
 require (
+	github.com/getsentry/sentry-go v0.35.0
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/golang-migrate/migrate/v4 v4.18.3
 	github.com/golang/mock v1.6.0
