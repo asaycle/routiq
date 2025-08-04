@@ -25,6 +25,7 @@ jobs:
       ENVOY_PORT: ${{ secrets.ENVOY_PORT }}
       REACT_APP_API_BASE: ${{ secrets.REACT_APP_API_BASE }}
       DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@postgres:5432/${{ secrets.POSTGRES_DB }}?sslmode=disable
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
     steps:
       - name: Checkout code
