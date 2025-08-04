@@ -1,9 +1,7 @@
 package db
 
 import (
-	"log"
-	"os"
-
+	"github.com/asaycle/routiq.git/pkg/lib/config"
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
@@ -15,11 +13,8 @@ var migrateCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "Run database migrations",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		dbURL, ok := os.LookupEnv("DATABASE_URL")
-		if !ok {
-			log.Printf("Error env: %v\n", os.Environ())
-			return nil
-		}
+		cfg := config.FromContext(cmd.Context())
+		dbURL := cfg.DB.GetURL()
 		m, err := migrate.New(
 			"file://migrations",
 			dbURL,

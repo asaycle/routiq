@@ -4,17 +4,15 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"errors"
-	"fmt"
 	"log"
 	"log/slog"
 	"net/http"
 	pkgurl "net/url"
-	"os"
 	"time"
 
 	"github.com/asaycle/routiq.git/pkg/domain/entity"
 	"github.com/asaycle/routiq.git/pkg/domain/repository"
+	"github.com/asaycle/routiq.git/pkg/lib/config"
 	"github.com/asaycle/routiq.git/pkg/lib/token"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/idtoken"
@@ -32,6 +30,7 @@ type AuthUsecase interface {
 }
 
 type AuthUsecaseImpl struct {
+	cfg                   *config.AuthConfig
 	txManager             repository.TransactionManager
 	userRepository        repository.UserRepository
 	userProfileRepository repository.UserProfileRepository
@@ -39,13 +38,14 @@ type AuthUsecaseImpl struct {
 }
 
 func NewAuthUsecaseImpl(
+	cfg *config.AuthConfig,
 	userRepository repository.UserRepository,
 	userProfileRepository repository.UserProfileRepository,
 	sessionRepository repository.SessionRepository,
 	txManager repository.TransactionManager,
 ) *AuthUsecaseImpl {
-
 	return &AuthUsecaseImpl{
+		cfg:                   cfg,
 		txManager:             txManager,
 		userRepository:        userRepository,
 		userProfileRepository: userProfileRepository,
@@ -66,20 +66,20 @@ func (u *AuthUsecaseImpl) CreateUser(ctx context.Context, code string) (*CreateU
 	url := "https://oauth2.googleapis.com/token"
 
 	// クライアントID、クライアントシークレット、リダイレクトURIを設定
-	clientID, _ := os.LookupEnv("GOOGLE_CLIENT_ID")
-	clientSecret, _ := os.LookupEnv("GOOGLE_CLIENT_SECRET")
-	redirectURI, _ := os.LookupEnv("REDIRECT_URI")
+	clientID := u.cfg.GoogleClientID
+	clientSecret := u.cfg.GoogleClientSecret
+	redirectURI := u.cfg.RedirectURI
 
 	log.Printf("clientID: %s, clientSecret: %s, redirectURI: %s", clientID, clientSecret, redirectURI)
 
-	data2 := pkgurl.Values{}
-	data2.Set("code", code)
-	data2.Set("client_id", clientID)
-	data2.Set("client_secret", clientSecret)
-	data2.Set("redirect_uri", redirectURI)
-	data2.Set("grant_type", "authorization_code")
+	data := pkgurl.Values{}
+	data.Set("code", code)
+	data.Set("client_id", clientID)
+	data.Set("client_secret", clientSecret)
+	data.Set("redirect_uri", redirectURI)
+	data.Set("grant_type", "authorization_code")
 
-	req, err := http.NewRequest("POST", url, bytes.NewBufferString(data2.Encode()))
+	req, err := http.NewRequest("POST", url, bytes.NewBufferString(data.Encode()))
 	if err != nil {
 		return nil, err
 	}
@@ -97,7 +97,7 @@ func (u *AuthUsecaseImpl) CreateUser(ctx context.Context, code string) (*CreateU
 
 	// ステータスコードを確認
 	if resp.StatusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("failed to exchange code for token: %s", resp.Status))
+		return nil, xerrors.Errorf("failed to exchange code for token: %s", resp.Status)
 	}
 
 	var tokenResponse TokenResponse
