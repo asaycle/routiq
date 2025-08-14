@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 goog.exportSymbol('proto.asaycle.routiq.v1.ListPrefsRequest', null, global);
 goog.exportSymbol('proto.asaycle.routiq.v1.ListPrefsResponse', null, global);
@@ -97,8 +97,8 @@ proto.asaycle.routiq.v1.ListPrefsRequest.prototype.toObject = function(opt_inclu
  */
 proto.asaycle.routiq.v1.ListPrefsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -257,7 +257,7 @@ proto.asaycle.routiq.v1.ListPrefsResponse.prototype.toObject = function(opt_incl
  */
 proto.asaycle.routiq.v1.ListPrefsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

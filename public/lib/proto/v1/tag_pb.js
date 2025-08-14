@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -145,8 +145,8 @@ proto.asaycle.routiq.v1.Tag.prototype.toObject = function(opt_includeInstance) {
  */
 proto.asaycle.routiq.v1.Tag.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -305,7 +305,7 @@ proto.asaycle.routiq.v1.CreateTagRequest.prototype.toObject = function(opt_inclu
  */
 proto.asaycle.routiq.v1.CreateTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tag: (f = msg.getTag()) && proto.asaycle.routiq.v1.Tag.toObject(includeInstance, f)
+tag: (f = msg.getTag()) && proto.asaycle.routiq.v1.Tag.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -456,9 +456,9 @@ proto.asaycle.routiq.v1.ListTagsRequest.prototype.toObject = function(opt_includ
  */
 proto.asaycle.routiq.v1.ListTagsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -653,9 +653,9 @@ proto.asaycle.routiq.v1.ListTagsResponse.prototype.toObject = function(opt_inclu
  */
 proto.asaycle.routiq.v1.ListTagsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     proto.asaycle.routiq.v1.Tag.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

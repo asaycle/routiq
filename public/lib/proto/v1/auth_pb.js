@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -191,7 +191,7 @@ proto.asaycle.routiq.v1.ExchangeOAuthCodeRequest.prototype.toObject = function(o
  */
 proto.asaycle.routiq.v1.ExchangeOAuthCodeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    code: jspb.Message.getFieldWithDefault(msg, 1, "")
+code: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -321,10 +321,10 @@ proto.asaycle.routiq.v1.ExchangeOAuthCodeResponse.prototype.toObject = function(
  */
 proto.asaycle.routiq.v1.ExchangeOAuthCodeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    redirectUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    accessToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    refreshToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    role: jspb.Message.getFieldWithDefault(msg, 4, "")
+redirectUrl: jspb.Message.getFieldWithDefault(msg, 1, ""),
+accessToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+refreshToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+role: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -541,7 +541,7 @@ proto.asaycle.routiq.v1.RefreshTokenRequest.prototype.toObject = function(opt_in
  */
 proto.asaycle.routiq.v1.RefreshTokenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    refreshToken: jspb.Message.getFieldWithDefault(msg, 1, "")
+refreshToken: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -671,10 +671,10 @@ proto.asaycle.routiq.v1.RefreshTokenResponse.prototype.toObject = function(opt_i
  */
 proto.asaycle.routiq.v1.RefreshTokenResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    accessToken: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    refreshToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    expiresIn: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    tokenType: jspb.Message.getFieldWithDefault(msg, 4, "")
+accessToken: jspb.Message.getFieldWithDefault(msg, 1, ""),
+refreshToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+expiresIn: jspb.Message.getFieldWithDefault(msg, 3, 0),
+tokenType: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -891,7 +891,7 @@ proto.asaycle.routiq.v1.VerifyTokenRequest.prototype.toObject = function(opt_inc
  */
 proto.asaycle.routiq.v1.VerifyTokenRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    accessToken: jspb.Message.getFieldWithDefault(msg, 1, "")
+accessToken: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1021,8 +1021,8 @@ proto.asaycle.routiq.v1.VerifyTokenResponse.prototype.toObject = function(opt_in
  */
 proto.asaycle.routiq.v1.VerifyTokenResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    role: jspb.Message.getFieldWithDefault(msg, 2, "")
+userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+role: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

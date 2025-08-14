@@ -1,16 +1,25 @@
-version: v1
+# buf.gen.yaml
+version: v2
+
 plugins:
-  - name: go
-    out: gen/go
-    opt: paths=source_relative
-  - name: go-grpc
-    out: gen/go
-    opt: paths=source_relative
-  - name: gapic
-    out: gen/go
-    opt:
-      - paths=source_relative
-  - name: grpc-gateway
-    out: gen/go
-    opt:
-      - paths=source_relative
+  # Go (messages)
+  - remote: buf.build/protocolbuffers/go:v1.34.2
+    out: api/proto
+    opt: [paths=source_relative]
+
+  # Go (gRPC stubs)
+  - remote: buf.build/grpc/go:v1.4.0
+    out: api/proto
+    opt: [paths=source_relative]
+
+  # JS (messages; gRPC-Webの土台)
+  - remote: buf.build/protocolbuffers/js
+    out: public/lib/proto
+    opt: [import_style=commonjs, binary]
+    include_imports: true   # ← 依存(protoのimport)も一緒に生成
+
+  # gRPC-Web (公式クライアント)
+  - remote: buf.build/grpc/web
+    out: public/lib/proto
+    opt: [import_style=commonjs+dts, mode=grpcweb]
+    include_imports: true   # ← 同上

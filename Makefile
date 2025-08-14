@@ -46,29 +46,6 @@ PROTO_DIR = ./api/proto
 VENDOR_DIR = ${PROTO_DIR}/vendor
 JS_PROTO_OUT_DIR = ./public/lib/proto
 
-protoc-gen:
-	protoc \
-		--proto_path=$(PROTO_DIR) \
-		--proto_path=$(VENDOR_DIR) \
-		--go_out=${PROTO_DIR} \
-		--go_opt=paths=source_relative \
-		--go-grpc_out=${PROTO_DIR} \
-		--go-grpc_opt=paths=source_relative \
-		--grpc-gateway_out=${PROTO_DIR} \
-		--grpc-gateway_opt=paths=source_relative \
-		--grpc-web_out=import_style=typescript,mode=grpcwebtext:${JS_PROTO_OUT_DIR} \
-		$(PROTO_DIR)/v1/*.proto
-
-protoc-gen-ts:
-	npx grpc_tools_node_protoc \
-		--proto_path=./api/proto/vendor \
-		--proto_path=./api/proto \
-		--js_out=import_style=commonjs,binary:./public/lib/proto \
-		--grpc-web_out=import_style=typescript,mode=grpcwebtext:./public/lib/proto \
-		./api/proto/v1/*.proto \
-		./api/proto/vendor/google/api/*.proto \
-		./api/proto/vendor/google/type/*.proto
-
 proto:
-	make protoc-gen
-	make protoc-gen-ts
+	buf dep update
+	buf generate

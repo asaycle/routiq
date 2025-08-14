@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -193,8 +193,8 @@ proto.asaycle.routiq.v1.TagCount.prototype.toObject = function(opt_includeInstan
  */
 proto.asaycle.routiq.v1.TagCount.toObject = function(includeInstance, msg) {
   var f, obj = {
-    tag: (f = msg.getTag()) && v1_tag_pb.Tag.toObject(includeInstance, f),
-    count: jspb.Message.getFieldWithDefault(msg, 2, 0)
+tag: (f = msg.getTag()) && v1_tag_pb.Tag.toObject(includeInstance, f),
+count: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -381,15 +381,15 @@ proto.asaycle.routiq.v1.Route.prototype.toObject = function(opt_includeInstance)
  */
 proto.asaycle.routiq.v1.Route.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    distance: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    geoJson: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    googleMapUrl: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    tagCountsList: jspb.Message.toObjectList(msg.getTagCountsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
+description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+distance: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+geoJson: jspb.Message.getFieldWithDefault(msg, 5, ""),
+googleMapUrl: jspb.Message.getFieldWithDefault(msg, 6, ""),
+tagCountsList: jspb.Message.toObjectList(msg.getTagCountsList(),
     proto.asaycle.routiq.v1.TagCount.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -765,7 +765,7 @@ proto.asaycle.routiq.v1.CreateRouteRequest.prototype.toObject = function(opt_inc
  */
 proto.asaycle.routiq.v1.CreateRouteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    route: (f = msg.getRoute()) && proto.asaycle.routiq.v1.Route.toObject(includeInstance, f)
+route: (f = msg.getRoute()) && proto.asaycle.routiq.v1.Route.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -916,8 +916,8 @@ proto.asaycle.routiq.v1.ListRoutesRequest.prototype.toObject = function(opt_incl
  */
 proto.asaycle.routiq.v1.ListRoutesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1083,9 +1083,9 @@ proto.asaycle.routiq.v1.ListRoutesResponse.prototype.toObject = function(opt_inc
  */
 proto.asaycle.routiq.v1.ListRoutesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    routesList: jspb.Message.toObjectList(msg.getRoutesList(),
+routesList: jspb.Message.toObjectList(msg.getRoutesList(),
     proto.asaycle.routiq.v1.Route.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1266,7 +1266,7 @@ proto.asaycle.routiq.v1.GetRouteRequest.prototype.toObject = function(opt_includ
  */
 proto.asaycle.routiq.v1.GetRouteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {

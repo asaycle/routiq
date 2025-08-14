@@ -13,13 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -182,16 +182,16 @@ proto.asaycle.routiq.v1.Touring.prototype.toObject = function(opt_includeInstanc
  */
 proto.asaycle.routiq.v1.Touring.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    routeId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+routeId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     v1_tag_pb.Tag.toObject, includeInstance),
-    date: (f = msg.getDate()) && google_type_date_pb.Date.toObject(includeInstance, f),
-    title: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    note: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    score: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    userId: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+date: (f = msg.getDate()) && google_type_date_pb.Date.toObject(includeInstance, f),
+title: jspb.Message.getFieldWithDefault(msg, 5, ""),
+note: jspb.Message.getFieldWithDefault(msg, 6, ""),
+score: jspb.Message.getFieldWithDefault(msg, 7, 0),
+userId: jspb.Message.getFieldWithDefault(msg, 8, ""),
+createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -617,7 +617,7 @@ proto.asaycle.routiq.v1.CreateTouringRequest.prototype.toObject = function(opt_i
  */
 proto.asaycle.routiq.v1.CreateTouringRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    touring: (f = msg.getTouring()) && proto.asaycle.routiq.v1.Touring.toObject(includeInstance, f)
+touring: (f = msg.getTouring()) && proto.asaycle.routiq.v1.Touring.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -768,9 +768,9 @@ proto.asaycle.routiq.v1.ListTouringsRequest.prototype.toObject = function(opt_in
  */
 proto.asaycle.routiq.v1.ListTouringsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
+pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -965,9 +965,9 @@ proto.asaycle.routiq.v1.ListTouringsResponse.prototype.toObject = function(opt_i
  */
 proto.asaycle.routiq.v1.ListTouringsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    touringsList: jspb.Message.toObjectList(msg.getTouringsList(),
+touringsList: jspb.Message.toObjectList(msg.getTouringsList(),
     proto.asaycle.routiq.v1.Touring.toObject, includeInstance),
-    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1148,7 +1148,7 @@ proto.asaycle.routiq.v1.GetTouringRequest.prototype.toObject = function(opt_incl
  */
 proto.asaycle.routiq.v1.GetTouringRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
