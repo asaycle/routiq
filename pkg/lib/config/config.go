@@ -20,8 +20,8 @@ type DBConfig struct {
 	Scheme   string `env:"DB_SCHEME" env-default:"postgres"`
 	Host     string `env:"DB_HOST" env-default:"localhost"`
 	Port     string `env:"DB_PORT" env-default:"5432"`
-	User     string `env:"DB_USER" env-default:"postgres"`
-	Password string `env:"DB_PSWD" env-default:"password"`
+	User     string `env:"DB_USER" env-default:"root"`
+	Password string `env:"DB_PSWD" env-default:"root"`
 	Database string `env:"DB_NAME" env-default:"routiq"`
 }
 

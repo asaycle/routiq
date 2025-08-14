@@ -19,7 +19,7 @@ services:
     image: envoyproxy/envoy:v1.31.0
     container_name: envoy
     volumes:
-      - ./infra/envoy/envoy.dev.yaml:/etc/envoy/envoy.yaml
+      - ./docker/envoy/envoy.dev.yaml:/etc/envoy/envoy.yaml
     ports:
-      - "80:${ENVOY_PORT}"
+      - "8080:${ENVOY_PORT}"
     command: envoy -c /etc/envoy/envoy.yaml --log-level debug
