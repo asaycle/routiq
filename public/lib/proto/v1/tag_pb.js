@@ -145,8 +145,8 @@ proto.asaycle.routiq.v1.Tag.prototype.toObject = function(opt_includeInstance) {
  */
 proto.asaycle.routiq.v1.Tag.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-name: jspb.Message.getFieldWithDefault(msg, 2, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+displayName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -185,11 +185,11 @@ proto.asaycle.routiq.v1.Tag.deserializeBinaryFromReader = function(msg, reader) 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setName(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
+      msg.setDisplayName(value);
       break;
     default:
       reader.skipField();
@@ -220,14 +220,14 @@ proto.asaycle.routiq.v1.Tag.prototype.serializeBinary = function() {
  */
 proto.asaycle.routiq.v1.Tag.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getName();
+  f = message.getDisplayName();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -238,10 +238,10 @@ proto.asaycle.routiq.v1.Tag.serializeBinaryToWriter = function(message, writer) 
 
 
 /**
- * optional string id = 1;
+ * optional string name = 1;
  * @return {string}
  */
-proto.asaycle.routiq.v1.Tag.prototype.getId = function() {
+proto.asaycle.routiq.v1.Tag.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -250,16 +250,16 @@ proto.asaycle.routiq.v1.Tag.prototype.getId = function() {
  * @param {string} value
  * @return {!proto.asaycle.routiq.v1.Tag} returns this
  */
-proto.asaycle.routiq.v1.Tag.prototype.setId = function(value) {
+proto.asaycle.routiq.v1.Tag.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string name = 2;
+ * optional string display_name = 2;
  * @return {string}
  */
-proto.asaycle.routiq.v1.Tag.prototype.getName = function() {
+proto.asaycle.routiq.v1.Tag.prototype.getDisplayName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -268,7 +268,7 @@ proto.asaycle.routiq.v1.Tag.prototype.getName = function() {
  * @param {string} value
  * @return {!proto.asaycle.routiq.v1.Tag} returns this
  */
-proto.asaycle.routiq.v1.Tag.prototype.setName = function(value) {
+proto.asaycle.routiq.v1.Tag.prototype.setDisplayName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

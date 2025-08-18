@@ -3,38 +3,38 @@ package entity
 import (
 	"time"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
+	pb "github.com/asaycle/routiq/api/proto/v1"
 	"github.com/rs/xid"
 )
 
 type Touring struct {
-	ID      string
-	RouteID string
-	Title   string
-	Date    time.Time
-	Note    string
-	Score   int
-	Tags    []*Tag
-	UserID  string
+	ID          string
+	RouteID     string
+	DisplayName string
+	Date        time.Time
+	Note        string
+	Score       int
+	Tags        []*Tag
+	UserID      string
 }
 
 func (t *Touring) ToProto() (*pb.Touring, error) {
 	return &pb.Touring{
-		Id:    t.ID,
-		Title: t.Title,
+		Name:        pb.FormatTouringName(t.RouteID, t.ID),
+		DisplayName: t.DisplayName,
 	}, nil
 }
 
-func NewTouring(routeID string, title string, date time.Time, note string, score int, tags []*Tag) *Touring {
+func NewTouring(routeID string, displayName string, date time.Time, note string, score int, tags []*Tag) *Touring {
 	return &Touring{
-		ID:      xid.New().String(),
-		RouteID: routeID,
-		Title:   title,
-		Date:    date,
-		Note:    note,
-		Score:   score,
-		Tags:    tags,
-		UserID:  "admin",
+		ID:          xid.New().String(),
+		RouteID:     routeID,
+		DisplayName: displayName,
+		Date:        date,
+		Note:        note,
+		Score:       score,
+		Tags:        tags,
+		UserID:      "admin",
 	}
 }
 

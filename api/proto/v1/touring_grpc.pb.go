@@ -32,7 +32,7 @@ const (
 type TouringServiceClient interface {
 	CreateTouring(ctx context.Context, in *CreateTouringRequest, opts ...grpc.CallOption) (*Touring, error)
 	ListTourings(ctx context.Context, in *ListTouringsRequest, opts ...grpc.CallOption) (*ListTouringsResponse, error)
-	GetTouring(ctx context.Context, in *GetTouringRequest, opts ...grpc.CallOption) (*Touring, error)
+	GetTouring(ctx context.Context, in *GetTouringRequest, opts ...grpc.CallOption) (*GetTouringResponse, error)
 }
 
 type touringServiceClient struct {
@@ -63,9 +63,9 @@ func (c *touringServiceClient) ListTourings(ctx context.Context, in *ListTouring
 	return out, nil
 }
 
-func (c *touringServiceClient) GetTouring(ctx context.Context, in *GetTouringRequest, opts ...grpc.CallOption) (*Touring, error) {
+func (c *touringServiceClient) GetTouring(ctx context.Context, in *GetTouringRequest, opts ...grpc.CallOption) (*GetTouringResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Touring)
+	out := new(GetTouringResponse)
 	err := c.cc.Invoke(ctx, TouringService_GetTouring_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -81,7 +81,7 @@ func (c *touringServiceClient) GetTouring(ctx context.Context, in *GetTouringReq
 type TouringServiceServer interface {
 	CreateTouring(context.Context, *CreateTouringRequest) (*Touring, error)
 	ListTourings(context.Context, *ListTouringsRequest) (*ListTouringsResponse, error)
-	GetTouring(context.Context, *GetTouringRequest) (*Touring, error)
+	GetTouring(context.Context, *GetTouringRequest) (*GetTouringResponse, error)
 	mustEmbedUnimplementedTouringServiceServer()
 }
 
@@ -95,7 +95,7 @@ func (UnimplementedTouringServiceServer) CreateTouring(context.Context, *CreateT
 func (UnimplementedTouringServiceServer) ListTourings(context.Context, *ListTouringsRequest) (*ListTouringsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTourings not implemented")
 }
-func (UnimplementedTouringServiceServer) GetTouring(context.Context, *GetTouringRequest) (*Touring, error) {
+func (UnimplementedTouringServiceServer) GetTouring(context.Context, *GetTouringRequest) (*GetTouringResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTouring not implemented")
 }
 func (UnimplementedTouringServiceServer) mustEmbedUnimplementedTouringServiceServer() {}

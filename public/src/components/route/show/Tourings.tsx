@@ -24,7 +24,7 @@ const RouteTourings: React.FC<RouteTouringsProps> = ({ route }) => {
     useEffect(() => {
         const fetchRoute = async () => {
             try {
-                const resp = await listRouteTourings(route.getId() || '');
+                const resp = await listRouteTourings(route.getName() || '');
                 setTourings(resp);
                 setLoading(false);
             } catch (err) {
@@ -56,7 +56,7 @@ const RouteTourings: React.FC<RouteTouringsProps> = ({ route }) => {
             <Box mt={2}>
                 {tourings.map((touring) => (
                     <Box
-                        key={touring.getId()}
+                        key={touring.getName()}
                         display="flex"
                         flexDirection="row"
                         borderBottom="1px solid #e0e0e0"
@@ -71,7 +71,7 @@ const RouteTourings: React.FC<RouteTouringsProps> = ({ route }) => {
                         <Box flex={1}>
                             <Box display="flex" justifyContent="space-between">
                                 <Typography variant="body1" fontWeight="bold">
-                                    {touring.getTitle() || 'タイトルなし'}
+                                    {touring.getDisplayName() || 'タイトルなし'}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary">
                                 </Typography>

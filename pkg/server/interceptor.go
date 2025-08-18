@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/asaycle/routiq.git/pkg/lib/session"
-	"github.com/asaycle/routiq.git/pkg/lib/token"
+	"github.com/asaycle/routiq/pkg/lib/session"
+	"github.com/asaycle/routiq/pkg/lib/token"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"

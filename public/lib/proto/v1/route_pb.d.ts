@@ -31,8 +31,8 @@ export namespace TagCount {
 }
 
 export class Route extends jspb.Message {
-  getId(): string;
-  setId(value: string): Route;
+  getName(): string;
+  setName(value: string): Route;
 
   getDisplayName(): string;
   setDisplayName(value: string): Route;
@@ -69,7 +69,7 @@ export class Route extends jspb.Message {
 
 export namespace Route {
   export type AsObject = {
-    id: string,
+    name: string,
     displayName: string,
     description: string,
     distance: number,

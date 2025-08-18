@@ -44,10 +44,10 @@ const RouteList: React.FC = () => {
             {routes.map((route, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <Link to={`/routes/${route.getId()}`}>
+                  <Link to={`/${route.getName()}`}>
                     {route.getDisplayName()}
                   </Link>
-                  </TableCell>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

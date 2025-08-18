@@ -42,7 +42,7 @@ const TouringCreate: React.FC = () => {
 
         // サーバーへ送信する処理を追加
         try {
-            const touring = await createTouring(validID, title, date, score, tags);
+            const touring = await createTouring(validID, title, date, score, tags.map(tag => tag.getName()));
             alert('ルートが作成されました');
             console.log('Created Route:', touring);
             navigate(`/routes/${id}`);
@@ -65,14 +65,14 @@ const TouringCreate: React.FC = () => {
     }, [filter])
 
     const handleSelectTag = (tag: Tag) => {
-        if (!selectedTags.find((t) => t.getId() === tag.getId())) {
+        if (!selectedTags.find((t) => t.getName() === tag.getName())) {
             setSelectedTags([...selectedTags, tag]);
         }
     };
 
     // タグ選択解除
     const handleRemoveTag = (tagId: string) => {
-        setSelectedTags(selectedTags.filter((tag) => tag.getId() !== tagId));
+        setSelectedTags(selectedTags.filter((tag) => tag.getName() !== tagId));
     };
 
     const handleCreateTag = async () => {
@@ -166,7 +166,7 @@ const TouringCreate: React.FC = () => {
                                         <Chip
                                             label={option.getName()}
                                             {...getTagProps({ index })}
-                                            key={option.getId()}
+                                            key={option.getName()}
                                         />
                                     ))
                                 }

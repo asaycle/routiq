@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/asaycle/routiq.git/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/lib/config"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq" // PostgreSQL ドライバ
 )

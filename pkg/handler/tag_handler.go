@@ -4,11 +4,11 @@ import (
 	"context"
 	"log"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
-	"github.com/asaycle/routiq.git/pkg/domain/repository"
-	"github.com/asaycle/routiq.git/pkg/domain/usecase"
-	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
-	"github.com/asaycle/routiq.git/pkg/lib/config"
+	pb "github.com/asaycle/routiq/api/proto/v1"
+	"github.com/asaycle/routiq/pkg/domain/repository"
+	"github.com/asaycle/routiq/pkg/domain/usecase"
+	"github.com/asaycle/routiq/pkg/infrastructure/db"
+	"github.com/asaycle/routiq/pkg/lib/config"
 	"google.golang.org/grpc"
 )
 
@@ -41,8 +41,8 @@ func (h *TagHandler) CreateTag(ctx context.Context, req *pb.CreateTagRequest) (*
 		return nil, err
 	}
 	return &pb.Tag{
-		Id:   tag.ID,
-		Name: tag.Name,
+		Name:        pb.FormatTagName(tag.ID),
+		DisplayName: tag.DisplayName,
 	}, nil
 }
 
@@ -55,8 +55,8 @@ func (h *TagHandler) ListTags(ctx context.Context, req *pb.ListTagsRequest) (*pb
 	pbTags := make([]*pb.Tag, len(tags))
 	for i, tag := range tags {
 		pbTags[i] = &pb.Tag{
-			Id:   tag.ID,
-			Name: tag.Name,
+			Name:        pb.FormatTagName(tag.ID),
+			DisplayName: tag.DisplayName,
 		}
 	}
 	return &pb.ListTagsResponse{Tags: pbTags}, nil

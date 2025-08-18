@@ -5,14 +5,15 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
-	"github.com/asaycle/routiq.git/pkg/domain/repository"
-	"github.com/asaycle/routiq.git/pkg/domain/usecase"
-	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
-	"github.com/asaycle/routiq.git/pkg/lib/config"
+	pb "github.com/asaycle/routiq/api/proto/v1"
+	"github.com/asaycle/routiq/pkg/domain/repository"
+	"github.com/asaycle/routiq/pkg/domain/usecase"
+	"github.com/asaycle/routiq/pkg/infrastructure/db"
+	"github.com/asaycle/routiq/pkg/lib/config"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func ActivateTouringHandler(s *grpc.Server, cfg *config.Config) {
@@ -42,15 +43,28 @@ func NewTouringHandler(cfg *config.Config) *TouringHandler {
 }
 
 func (h *TouringHandler) CreateTouring(ctx context.Context, req *pb.CreateTouringRequest) (*pb.Touring, error) {
-	date := time.Date(int(req.Touring.Date.Year), time.Month(req.Touring.Date.Month), int(req.Touring.Date.Day), 0, 0, 0, 0, time.Local)
-	tags := make([]*entity.Tag, len(req.Touring.Tags))
-	for i, tag := range req.Touring.Tags {
-		tags[i] = &entity.Tag{
-			ID:   tag.Id,
-			Name: tag.Name,
-		}
+	routeName, err := pb.ParseRouteName(req.Parent)
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, "Invalid parent route name")
 	}
-	touring, err := h.useCase.CreateTouring(ctx, req.Touring.RouteId, req.Touring.Title, date, req.Touring.Note, int(req.Touring.Score), tags)
+	date := time.Date(int(req.Touring.Date.Year), time.Month(req.Touring.Date.Month), int(req.Touring.Date.Day), 0, 0, 0, 0, time.Local)
+	tags := make([]string, len(req.Touring.Tags))
+	for i, tagNameStr := range req.Touring.Tags {
+		tagName, err := pb.ParseTagName(tagNameStr)
+		if err != nil {
+			return nil, xerrors.Errorf("Error ParseTagName: %w", err)
+		}
+		tags[i] = tagName.GetTag()
+	}
+	touring, err := h.useCase.CreateTouring(
+		ctx,
+		routeName.GetRoute(),
+		req.Touring.DisplayName,
+		date,
+		req.Touring.Note,
+		int(req.Touring.Score),
+		tags,
+	)
 	if err != nil {
 		return nil, xerrors.Errorf("Error CreateTouring: %w", err)
 	}

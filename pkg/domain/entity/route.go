@@ -3,7 +3,7 @@ package entity
 import (
 	"log/slog"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
+	pb "github.com/asaycle/routiq/api/proto/v1"
 	geojson "github.com/paulmach/go.geojson"
 	"github.com/rs/xid"
 	"golang.org/x/xerrors"
@@ -11,7 +11,7 @@ import (
 
 type Route struct {
 	ID                string
-	Name              string
+	DisplayName       string
 	Description       string
 	FeatureCollection *geojson.FeatureCollection
 	MapURL            string
@@ -34,8 +34,8 @@ func (r *Route) ToProto() (*pb.Route, error) {
 		tagCounts[i] = tagCount.ToProto()
 	}
 	return &pb.Route{
-		Id:           r.ID,
-		DisplayName:  r.Name,
+		Name:         pb.FormatRouteName(r.ID),
+		DisplayName:  r.DisplayName,
 		Description:  r.Description,
 		GeoJson:      string(featureJSON),
 		GoogleMapUrl: r.MapURL,
@@ -43,10 +43,10 @@ func (r *Route) ToProto() (*pb.Route, error) {
 	}, nil
 }
 
-func NewRoute(name string, desc string, featureCollection *geojson.FeatureCollection) *Route {
+func NewRoute(displayName string, desc string, featureCollection *geojson.FeatureCollection) *Route {
 	return &Route{
 		ID:                xid.New().String(),
-		Name:              name,
+		DisplayName:       displayName,
 		Description:       desc,
 		FeatureCollection: featureCollection,
 		UserID:            "admin",
@@ -73,8 +73,8 @@ func NewRouteTagCount(routeID string, tagID string) *RouteTagCount {
 func (r *RouteTagCount) ToProto() *pb.TagCount {
 	return &pb.TagCount{
 		Tag: &pb.Tag{
-			Id:   r.TagID,
-			Name: r.TagName,
+			Name:        pb.FormatTagName(r.TagID),
+			DisplayName: r.TagName,
 		},
 		Count: int32(r.Count),
 	}

@@ -3,7 +3,7 @@ package repository
 import (
 	"time"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/entity"
 )
 
 type Touring struct {
@@ -22,7 +22,7 @@ func fromTouringEntity(touring *entity.Touring) (*Touring, error) {
 	return &Touring{
 		ID:      touring.ID,
 		RouteID: touring.RouteID,
-		Title:   touring.Title,
+		Title:   touring.DisplayName,
 		Date:    touring.Date,
 		Score:   touring.Score,
 		Note:    touring.Note,
@@ -31,8 +31,8 @@ func fromTouringEntity(touring *entity.Touring) (*Touring, error) {
 
 func toTouringEntity(model *Touring) (*entity.Touring, error) {
 	return &entity.Touring{
-		ID:    model.ID,
-		Title: model.Title,
-		Note:  model.Note,
+		ID:          model.ID,
+		DisplayName: model.Title,
+		Note:        model.Note,
 	}, nil
 }

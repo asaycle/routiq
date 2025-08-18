@@ -3,13 +3,13 @@ package entity
 import "github.com/rs/xid"
 
 type Tag struct {
-	ID   string
-	Name string
+	ID          string
+	DisplayName string
 }
 
 func NewTag(name string) *Tag {
 	return &Tag{
-		ID:   xid.New().String(),
-		Name: name,
+		ID:          xid.New().String(),
+		DisplayName: name,
 	}
 }

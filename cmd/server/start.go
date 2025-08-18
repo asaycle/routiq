@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 
-	"github.com/asaycle/routiq.git/pkg/lib/config"
-	"github.com/asaycle/routiq.git/pkg/server"
+	"github.com/asaycle/routiq/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/server"
 	"github.com/spf13/cobra"
 )
 

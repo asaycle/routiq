@@ -6,13 +6,13 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 
 
 export class User extends jspb.Message {
-  getId(): string;
-  setId(value: string): User;
+  getName(): string;
+  setName(value: string): User;
 
-  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): User;
-  hasCreatedAt(): boolean;
-  clearCreatedAt(): User;
+  getCreateTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreateTime(value?: google_protobuf_timestamp_pb.Timestamp): User;
+  hasCreateTime(): boolean;
+  clearCreateTime(): User;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): User.AsObject;
@@ -24,8 +24,8 @@ export class User extends jspb.Message {
 
 export namespace User {
   export type AsObject = {
-    id: string,
-    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    name: string,
+    createTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

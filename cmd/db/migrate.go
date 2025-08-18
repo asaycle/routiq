@@ -3,7 +3,7 @@ package db
 import (
 	"log"
 
-	"github.com/asaycle/routiq.git/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/lib/config"
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"

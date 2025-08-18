@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/asaycle/routiq.git/pkg/domain/entity"
+import "github.com/asaycle/routiq/pkg/domain/entity"
 
 type Tag struct {
 	ID   string `db:"id"`
@@ -10,13 +10,13 @@ type Tag struct {
 func fromTagEntity(e *entity.Tag) *Tag {
 	return &Tag{
 		ID:   e.ID,
-		Name: e.Name,
+		Name: e.DisplayName,
 	}
 }
 
 func toTagEntity(model *Tag) *entity.Tag {
 	return &entity.Tag{
-		ID:   model.ID,
-		Name: model.Name,
+		ID:          model.ID,
+		DisplayName: model.Name,
 	}
 }

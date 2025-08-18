@@ -2,16 +2,15 @@ package handler
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"log/slog"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
-	"github.com/asaycle/routiq.git/pkg/domain/repository"
-	"github.com/asaycle/routiq.git/pkg/domain/usecase"
-	"github.com/asaycle/routiq.git/pkg/infrastructure/db"
-	"github.com/asaycle/routiq.git/pkg/lib/config"
-	"github.com/asaycle/routiq.git/pkg/lib/session"
+	pb "github.com/asaycle/routiq/api/proto/v1"
+	"github.com/asaycle/routiq/pkg/domain/repository"
+	"github.com/asaycle/routiq/pkg/domain/usecase"
+	"github.com/asaycle/routiq/pkg/infrastructure/db"
+	"github.com/asaycle/routiq/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/lib/session"
 	"golang.org/x/xerrors"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc"
@@ -43,7 +42,6 @@ func NewRouteHandler(cfg *config.Config) *RouteHandler {
 
 func (h *RouteHandler) CreateRoute(ctx context.Context, req *pb.CreateRouteRequest) (*pb.Route, error) {
 	if err := validateCreateRouteRequest(req); err != nil {
-		fmt.Println(err)
 		return nil, err
 	}
 	route, err := h.useCase.CreateRoute(ctx, req.Route.DisplayName, req.Route.Description, req.Route.GeoJson)

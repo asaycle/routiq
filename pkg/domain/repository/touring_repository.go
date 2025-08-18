@@ -4,8 +4,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
-	pkgfilter "github.com/asaycle/routiq.git/pkg/lib/filter"
+	"github.com/asaycle/routiq/pkg/domain/entity"
+	pkgfilter "github.com/asaycle/routiq/pkg/lib/filter"
 	"golang.org/x/xerrors"
 )
 

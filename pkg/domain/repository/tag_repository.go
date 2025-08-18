@@ -3,12 +3,13 @@ package repository
 import (
 	"context"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/entity"
 	"golang.org/x/xerrors"
 )
 
 type TagRepository interface {
 	CreateTag(ctx context.Context, tx Tx, tag *entity.Tag) error
+	GetByIDs(ctx context.Context, tx Tx, ids []string) ([]*entity.Tag, error)
 	ListTags(ctx context.Context, tx Tx) ([]*entity.Tag, error)
 }
 
@@ -29,6 +30,25 @@ func (r *TagRepositoryImpl) ListTags(ctx context.Context, tx Tx) ([]*entity.Tag,
 		return nil, err
 	}
 
+	tags := make([]*entity.Tag, len(models))
+	for i, model := range models {
+		tags[i] = toTagEntity(model)
+	}
+	return tags, nil
+}
+
+func (r *TagRepositoryImpl) GetByIDs(ctx context.Context, tx Tx, ids []string) ([]*entity.Tag, error) {
+	if len(ids) == 0 {
+		return nil, nil
+	}
+	var models []*Tag
+	err := tx.SelectContext(ctx, &models, "SELECT id, name FROM tags WHERE id IN (:ids)", ids)
+	if err != nil {
+		return nil, xerrors.Errorf("Failed BindNamed: %w", err)
+	}
+	if len(models) != len(ids) {
+		return nil, xerrors.Errorf("Not found tags: %v", ids)
+	}
 	tags := make([]*entity.Tag, len(models))
 	for i, model := range models {
 		tags[i] = toTagEntity(model)

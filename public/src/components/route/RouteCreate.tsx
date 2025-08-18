@@ -17,7 +17,8 @@ const RouteCreate: React.FC = () => {
         try {
             console.log(data, geoJson)
             const route = await createRoute(data.displayName, data.description, geoJson);
-            navigate(`/routes/${route?.getId()}`);
+            console.log(route?.getName())
+            navigate(`${route?.getName()}`);
         } catch (error: any) {
         }
     };

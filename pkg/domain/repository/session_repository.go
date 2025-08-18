@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/entity"
 	"golang.org/x/xerrors"
 )
 

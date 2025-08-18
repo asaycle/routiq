@@ -5,9 +5,9 @@ import (
 	"log"
 	"net"
 
-	"github.com/asaycle/routiq.git/pkg/handler"
-	"github.com/asaycle/routiq.git/pkg/lib/config"
-	"github.com/asaycle/routiq.git/pkg/sentry"
+	"github.com/asaycle/routiq/pkg/handler"
+	"github.com/asaycle/routiq/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/sentry"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

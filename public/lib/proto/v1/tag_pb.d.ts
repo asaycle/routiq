@@ -5,11 +5,11 @@ import * as google_api_resource_pb from '../google/api/resource_pb'; // proto im
 
 
 export class Tag extends jspb.Message {
-  getId(): string;
-  setId(value: string): Tag;
-
   getName(): string;
   setName(value: string): Tag;
+
+  getDisplayName(): string;
+  setDisplayName(value: string): Tag;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Tag.AsObject;
@@ -21,8 +21,8 @@ export class Tag extends jspb.Message {
 
 export namespace Tag {
   export type AsObject = {
-    id: string,
     name: string,
+    displayName: string,
   }
 }
 

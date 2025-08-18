@@ -22,7 +22,6 @@ package idtoken
 
 import (
 	"errors"
-	"log/slog"
 	"net/http"
 	"os"
 
@@ -86,11 +85,6 @@ type Options struct {
 	// when fetching tokens. If provided this should be a fully-authenticated
 	// client. Optional.
 	Client *http.Client
-	// Logger is used for debug logging. If provided, logging will be enabled
-	// at the loggers configured level. By default logging is disabled unless
-	// enabled by setting GOOGLE_SDK_GO_LOGGING_LEVEL in which case a default
-	// logger will be used. Optional.
-	Logger *slog.Logger
 }
 
 func (o *Options) client() *http.Client {

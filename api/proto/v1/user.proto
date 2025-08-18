@@ -15,8 +15,8 @@ message User {
     singular : "user"
     plural : "users"
   };
-  string id = 1;
-  google.protobuf.Timestamp created_at = 3; // 作成日時 (ISO8601形式の文字列)
+  string name = 1; // format: users/{user}
+  google.protobuf.Timestamp create_time = 3; // 作成日時 (ISO8601形式の文字列)
 }
 
 service UserService {

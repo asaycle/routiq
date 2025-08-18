@@ -381,7 +381,7 @@ proto.asaycle.routiq.v1.Route.prototype.toObject = function(opt_includeInstance)
  */
 proto.asaycle.routiq.v1.Route.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
 displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
 description: jspb.Message.getFieldWithDefault(msg, 3, ""),
 distance: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
@@ -428,7 +428,7 @@ proto.asaycle.routiq.v1.Route.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setName(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -489,7 +489,7 @@ proto.asaycle.routiq.v1.Route.prototype.serializeBinary = function() {
  */
 proto.asaycle.routiq.v1.Route.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -551,10 +551,10 @@ proto.asaycle.routiq.v1.Route.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string id = 1;
+ * optional string name = 1;
  * @return {string}
  */
-proto.asaycle.routiq.v1.Route.prototype.getId = function() {
+proto.asaycle.routiq.v1.Route.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -563,7 +563,7 @@ proto.asaycle.routiq.v1.Route.prototype.getId = function() {
  * @param {string} value
  * @return {!proto.asaycle.routiq.v1.Route} returns this
  */
-proto.asaycle.routiq.v1.Route.prototype.setId = function(value) {
+proto.asaycle.routiq.v1.Route.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

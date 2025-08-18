@@ -12,6 +12,10 @@ plugins:
     out: api/proto
     opt: [paths=source_relative]
 
+  - local: protoc-gen-go-resourcename
+    out: api/proto
+    opt: []
+
   # JS (messages; gRPC-Webの土台)
   - remote: buf.build/protocolbuffers/js
     out: public/lib/proto

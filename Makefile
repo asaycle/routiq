@@ -48,4 +48,4 @@ JS_PROTO_OUT_DIR = ./public/lib/proto
 
 proto:
 	buf dep update
-	buf generate
+	PATH="${PWD}/bin:$$PATH" buf generate

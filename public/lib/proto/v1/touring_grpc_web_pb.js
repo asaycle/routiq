@@ -214,13 +214,13 @@ proto.asaycle.routiq.v1.TouringServicePromiseClient.prototype.listTourings =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.asaycle.routiq.v1.GetTouringRequest,
- *   !proto.asaycle.routiq.v1.Touring>}
+ *   !proto.asaycle.routiq.v1.GetTouringResponse>}
  */
 const methodDescriptor_TouringService_GetTouring = new grpc.web.MethodDescriptor(
   '/asaycle.routiq.v1.TouringService/GetTouring',
   grpc.web.MethodType.UNARY,
   proto.asaycle.routiq.v1.GetTouringRequest,
-  proto.asaycle.routiq.v1.Touring,
+  proto.asaycle.routiq.v1.GetTouringResponse,
   /**
    * @param {!proto.asaycle.routiq.v1.GetTouringRequest} request
    * @return {!Uint8Array}
@@ -228,7 +228,7 @@ const methodDescriptor_TouringService_GetTouring = new grpc.web.MethodDescriptor
   function(request) {
     return request.serializeBinary();
   },
-  proto.asaycle.routiq.v1.Touring.deserializeBinary
+  proto.asaycle.routiq.v1.GetTouringResponse.deserializeBinary
 );
 
 
@@ -237,9 +237,9 @@ const methodDescriptor_TouringService_GetTouring = new grpc.web.MethodDescriptor
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.asaycle.routiq.v1.Touring)}
+ * @param {function(?grpc.web.RpcError, ?proto.asaycle.routiq.v1.GetTouringResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.asaycle.routiq.v1.Touring>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.asaycle.routiq.v1.GetTouringResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.asaycle.routiq.v1.TouringServiceClient.prototype.getTouring =
@@ -258,7 +258,7 @@ proto.asaycle.routiq.v1.TouringServiceClient.prototype.getTouring =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.asaycle.routiq.v1.Touring>}
+ * @return {!Promise<!proto.asaycle.routiq.v1.GetTouringResponse>}
  *     Promise that resolves to the response
  */
 proto.asaycle.routiq.v1.TouringServicePromiseClient.prototype.getTouring =

@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
-	"github.com/asaycle/routiq.git/pkg/domain/usecase"
-	usecasemock "github.com/asaycle/routiq.git/pkg/domain/usecase/mocks"
+	pb "github.com/asaycle/routiq/api/proto/v1"
+	"github.com/asaycle/routiq/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/usecase"
+	usecasemock "github.com/asaycle/routiq/pkg/domain/usecase/mocks"
 	"github.com/golang/mock/gomock"
 	"google.golang.org/protobuf/proto"
 )
@@ -28,7 +28,6 @@ func TestRouteHandler_CreateRoute(t *testing.T) {
 		want    *pb.Route
 		wantErr bool
 	}{
-		// TODO: Add test cases.
 		{
 			name: "success",
 			fields: fields{
@@ -41,7 +40,7 @@ func TestRouteHandler_CreateRoute(t *testing.T) {
 						gomock.Any(),
 					).Return(&entity.Route{
 						ID:          "id-1",
-						Name:        "name-1",
+						DisplayName: "name-1",
 						Description: "desc-1",
 					}, nil)
 					return mock
@@ -58,7 +57,7 @@ func TestRouteHandler_CreateRoute(t *testing.T) {
 				},
 			},
 			want: &pb.Route{
-				Id:          "id-1",
+				Name:        pb.FormatRouteName("id-1"),
 				DisplayName: "name-1",
 				Description: "desc-1",
 			},

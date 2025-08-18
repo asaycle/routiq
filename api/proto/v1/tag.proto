@@ -7,6 +7,18 @@ import "google/api/resource.proto";
 
 option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
 
+message Tag {
+  option (google.api.resource) = {
+    type : "asaycle.routiq.v1.Tag"
+    pattern : "tags/{tag}"
+    singular : "tag"
+    plural : "tags"
+  };
+
+  string name = 1; // format: tags/{tag}
+  string display_name = 2; // 表示用の名前
+}
+
 service TagService {
   // タグを作成
   rpc CreateTag(CreateTagRequest) returns (Tag) {
@@ -25,18 +37,6 @@ service TagService {
       }
     };
   };
-}
-
-message Tag {
-  option (google.api.resource) = {
-    type : "asaycle.routiq.v1.Tag"
-    pattern : "tags/{tag}"
-    singular : "tag"
-    plural : "tags"
-  };
-
-  string id = 1;   // フルリソース名: tags/{tag}
-  string name = 2; // 表示用の名前
 }
 
 // タグ作成リクエスト

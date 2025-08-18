@@ -4,20 +4,21 @@ import (
 	"context"
 	"time"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
-	"github.com/asaycle/routiq.git/pkg/domain/repository"
-	"github.com/asaycle/routiq.git/pkg/lib/filter"
+	"github.com/asaycle/routiq/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/repository"
+	"github.com/asaycle/routiq/pkg/lib/filter"
 	"golang.org/x/xerrors"
 )
 
 type TouringUsecase interface {
-	CreateTouring(ctx context.Context, routeID string, title string, date time.Time, note string, score int, tags []*entity.Tag) (*entity.Touring, error)
+	CreateTouring(ctx context.Context, routeID string, title string, date time.Time, note string, score int, tagIDs []string) (*entity.Touring, error)
 	ListTourings(ctx context.Context, filter string) ([]*entity.Touring, error)
 }
 
 type TouringUsecaseImpl struct {
 	touringRepo repository.TouringRepository
 	routeRepo   repository.RouteRepository
+	tagRepo     repository.TagRepository
 	txManager   repository.TransactionManager
 }
 
@@ -29,13 +30,22 @@ func NewTouringUsecaseImpl(touringRepo repository.TouringRepository, routeRepo r
 	}
 }
 
-func (u *TouringUsecaseImpl) CreateTouring(ctx context.Context, routeID string, title string, date time.Time, note string, score int, tags []*entity.Tag) (*entity.Touring, error) {
-	touring := entity.NewTouring(routeID, title, date, note, score, tags)
+func (u *TouringUsecaseImpl) CreateTouring(ctx context.Context, routeID string, title string, date time.Time, note string, score int, tagIDs []string) (*entity.Touring, error) {
+	touring := entity.NewTouring(routeID, title, date, note, score, nil)
 	err := u.txManager.RunWithReadWriteTx(ctx, func(ctx context.Context, tx repository.Tx) error {
+		_, err := u.routeRepo.GetRoute(ctx, tx, routeID)
+		if err != nil {
+			return xerrors.Errorf("Error GetRoute: %w", err)
+		}
+		tags, err := u.tagRepo.GetByIDs(ctx, tx, tagIDs)
+		if err != nil {
+			return xerrors.Errorf("Error GetByIDs: %w", err)
+		}
 		if err := u.touringRepo.CreateTouring(ctx, tx, touring); err != nil {
 			return xerrors.Errorf("Error CreateTouring: %w", err)
 		}
-		for _, tag := range touring.Tags {
+		touring.Tags = tags
+		for _, tag := range tags {
 			touringTag := entity.NewTouringTag(touring.ID, tag.ID)
 			if err := u.touringRepo.CreateTouringTag(ctx, tx, touringTag); err != nil {
 				return xerrors.Errorf("Error CreateTouringTag: %w", err)

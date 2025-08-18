@@ -22,7 +22,7 @@ message Route {
     singular : "route"
     plural : "routes"
   };
-  string id = 1;           // XID型の一意のID
+  string name = 1;           // XID型の一意のID
   string display_name = 2; // ルート名
   string description = 3;  // 説明
   float distance = 4;

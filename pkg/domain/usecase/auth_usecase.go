@@ -10,10 +10,10 @@ import (
 	pkgurl "net/url"
 	"time"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
-	"github.com/asaycle/routiq.git/pkg/domain/repository"
-	"github.com/asaycle/routiq.git/pkg/lib/config"
-	"github.com/asaycle/routiq.git/pkg/lib/token"
+	"github.com/asaycle/routiq/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/repository"
+	"github.com/asaycle/routiq/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/lib/token"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/idtoken"
 )

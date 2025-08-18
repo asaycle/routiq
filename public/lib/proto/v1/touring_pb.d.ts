@@ -9,24 +9,24 @@ import * as v1_tag_pb from '../v1/tag_pb'; // proto import: "v1/tag.proto"
 
 
 export class Touring extends jspb.Message {
-  getId(): string;
-  setId(value: string): Touring;
+  getName(): string;
+  setName(value: string): Touring;
 
-  getRouteId(): string;
-  setRouteId(value: string): Touring;
+  getRoute(): string;
+  setRoute(value: string): Touring;
 
-  getTagsList(): Array<v1_tag_pb.Tag>;
-  setTagsList(value: Array<v1_tag_pb.Tag>): Touring;
+  getTagsList(): Array<string>;
+  setTagsList(value: Array<string>): Touring;
   clearTagsList(): Touring;
-  addTags(value?: v1_tag_pb.Tag, index?: number): v1_tag_pb.Tag;
+  addTags(value: string, index?: number): Touring;
 
   getDate(): google_type_date_pb.Date | undefined;
   setDate(value?: google_type_date_pb.Date): Touring;
   hasDate(): boolean;
   clearDate(): Touring;
 
-  getTitle(): string;
-  setTitle(value: string): Touring;
+  getDisplayName(): string;
+  setDisplayName(value: string): Touring;
 
   getNote(): string;
   setNote(value: string): Touring;
@@ -37,10 +37,15 @@ export class Touring extends jspb.Message {
   getUserId(): string;
   setUserId(value: string): Touring;
 
-  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Touring;
-  hasCreatedAt(): boolean;
-  clearCreatedAt(): Touring;
+  getCreateTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreateTime(value?: google_protobuf_timestamp_pb.Timestamp): Touring;
+  hasCreateTime(): boolean;
+  clearCreateTime(): Touring;
+
+  getUpdateTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdateTime(value?: google_protobuf_timestamp_pb.Timestamp): Touring;
+  hasUpdateTime(): boolean;
+  clearUpdateTime(): Touring;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Touring.AsObject;
@@ -52,19 +57,23 @@ export class Touring extends jspb.Message {
 
 export namespace Touring {
   export type AsObject = {
-    id: string,
-    routeId: string,
-    tagsList: Array<v1_tag_pb.Tag.AsObject>,
+    name: string,
+    route: string,
+    tagsList: Array<string>,
     date?: google_type_date_pb.Date.AsObject,
-    title: string,
+    displayName: string,
     note: string,
     score: number,
     userId: string,
-    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    createTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updateTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
 export class CreateTouringRequest extends jspb.Message {
+  getParent(): string;
+  setParent(value: string): CreateTouringRequest;
+
   getTouring(): Touring | undefined;
   setTouring(value?: Touring): CreateTouringRequest;
   hasTouring(): boolean;
@@ -80,6 +89,7 @@ export class CreateTouringRequest extends jspb.Message {
 
 export namespace CreateTouringRequest {
   export type AsObject = {
+    parent: string,
     touring?: Touring.AsObject,
   }
 }
@@ -94,6 +104,9 @@ export class ListTouringsRequest extends jspb.Message {
   getPageToken(): string;
   setPageToken(value: string): ListTouringsRequest;
 
+  getView(): TouringView;
+  setView(value: TouringView): ListTouringsRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListTouringsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListTouringsRequest): ListTouringsRequest.AsObject;
@@ -107,6 +120,7 @@ export namespace ListTouringsRequest {
     filter: string,
     pageSize: number,
     pageToken: string,
+    view: TouringView,
   }
 }
 
@@ -115,6 +129,9 @@ export class ListTouringsResponse extends jspb.Message {
   setTouringsList(value: Array<Touring>): ListTouringsResponse;
   clearTouringsList(): ListTouringsResponse;
   addTourings(value?: Touring, index?: number): Touring;
+
+  getIncludedTagsMap(): jspb.Map<string, v1_tag_pb.Tag>;
+  clearIncludedTagsMap(): ListTouringsResponse;
 
   getNextPageToken(): string;
   setNextPageToken(value: string): ListTouringsResponse;
@@ -130,13 +147,17 @@ export class ListTouringsResponse extends jspb.Message {
 export namespace ListTouringsResponse {
   export type AsObject = {
     touringsList: Array<Touring.AsObject>,
+    includedTagsMap: Array<[string, v1_tag_pb.Tag.AsObject]>,
     nextPageToken: string,
   }
 }
 
 export class GetTouringRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): GetTouringRequest;
+  getName(): string;
+  setName(value: string): GetTouringRequest;
+
+  getView(): TouringView;
+  setView(value: TouringView): GetTouringRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetTouringRequest.AsObject;
@@ -148,7 +169,37 @@ export class GetTouringRequest extends jspb.Message {
 
 export namespace GetTouringRequest {
   export type AsObject = {
-    id: string,
+    name: string,
+    view: TouringView,
   }
 }
 
+export class GetTouringResponse extends jspb.Message {
+  getTouring(): Touring | undefined;
+  setTouring(value?: Touring): GetTouringResponse;
+  hasTouring(): boolean;
+  clearTouring(): GetTouringResponse;
+
+  getIncludedTagsMap(): jspb.Map<string, v1_tag_pb.Tag>;
+  clearIncludedTagsMap(): GetTouringResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetTouringResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetTouringResponse): GetTouringResponse.AsObject;
+  static serializeBinaryToWriter(message: GetTouringResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetTouringResponse;
+  static deserializeBinaryFromReader(message: GetTouringResponse, reader: jspb.BinaryReader): GetTouringResponse;
+}
+
+export namespace GetTouringResponse {
+  export type AsObject = {
+    touring?: Touring.AsObject,
+    includedTagsMap: Array<[string, v1_tag_pb.Tag.AsObject]>,
+  }
+}
+
+export enum TouringView { 
+  TOURING_VIEW_UNSPECIFIED = 0,
+  TOURING_VIEW_BASIC = 1,
+  TOURING_VIEW_WITH_TAGS = 2,
+}

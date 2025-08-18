@@ -8,7 +8,7 @@ import (
 	"math/rand/v2"
 	"time"
 
-	pb "github.com/asaycle/routiq.git/api/proto/v1"
+	pb "github.com/asaycle/routiq/api/proto/v1"
 	"google.golang.org/genproto/googleapis/type/date"
 	"google.golang.org/grpc"
 )

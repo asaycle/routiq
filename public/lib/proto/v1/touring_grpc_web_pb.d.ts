@@ -26,8 +26,8 @@ export class TouringServiceClient {
     request: v1_touring_pb.GetTouringRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: v1_touring_pb.Touring) => void
-  ): grpcWeb.ClientReadableStream<v1_touring_pb.Touring>;
+               response: v1_touring_pb.GetTouringResponse) => void
+  ): grpcWeb.ClientReadableStream<v1_touring_pb.GetTouringResponse>;
 
 }
 
@@ -49,7 +49,7 @@ export class TouringServicePromiseClient {
   getTouring(
     request: v1_touring_pb.GetTouringRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<v1_touring_pb.Touring>;
+  ): Promise<v1_touring_pb.GetTouringResponse>;
 
 }
 

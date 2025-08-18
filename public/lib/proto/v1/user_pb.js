@@ -147,8 +147,8 @@ proto.asaycle.routiq.v1.User.prototype.toObject = function(opt_includeInstance) 
  */
 proto.asaycle.routiq.v1.User.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -187,12 +187,12 @@ proto.asaycle.routiq.v1.User.deserializeBinaryFromReader = function(msg, reader)
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setName(value);
       break;
     case 3:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setCreatedAt(value);
+      msg.setCreateTime(value);
       break;
     default:
       reader.skipField();
@@ -223,14 +223,14 @@ proto.asaycle.routiq.v1.User.prototype.serializeBinary = function() {
  */
 proto.asaycle.routiq.v1.User.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getCreatedAt();
+  f = message.getCreateTime();
   if (f != null) {
     writer.writeMessage(
       3,
@@ -242,10 +242,10 @@ proto.asaycle.routiq.v1.User.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional string id = 1;
+ * optional string name = 1;
  * @return {string}
  */
-proto.asaycle.routiq.v1.User.prototype.getId = function() {
+proto.asaycle.routiq.v1.User.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -254,16 +254,16 @@ proto.asaycle.routiq.v1.User.prototype.getId = function() {
  * @param {string} value
  * @return {!proto.asaycle.routiq.v1.User} returns this
  */
-proto.asaycle.routiq.v1.User.prototype.setId = function(value) {
+proto.asaycle.routiq.v1.User.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional google.protobuf.Timestamp created_at = 3;
+ * optional google.protobuf.Timestamp create_time = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.asaycle.routiq.v1.User.prototype.getCreatedAt = function() {
+proto.asaycle.routiq.v1.User.prototype.getCreateTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
@@ -273,7 +273,7 @@ proto.asaycle.routiq.v1.User.prototype.getCreatedAt = function() {
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.asaycle.routiq.v1.User} returns this
 */
-proto.asaycle.routiq.v1.User.prototype.setCreatedAt = function(value) {
+proto.asaycle.routiq.v1.User.prototype.setCreateTime = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
@@ -282,8 +282,8 @@ proto.asaycle.routiq.v1.User.prototype.setCreatedAt = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.asaycle.routiq.v1.User} returns this
  */
-proto.asaycle.routiq.v1.User.prototype.clearCreatedAt = function() {
-  return this.setCreatedAt(undefined);
+proto.asaycle.routiq.v1.User.prototype.clearCreateTime = function() {
+  return this.setCreateTime(undefined);
 };
 
 
@@ -291,7 +291,7 @@ proto.asaycle.routiq.v1.User.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.asaycle.routiq.v1.User.prototype.hasCreatedAt = function() {
+proto.asaycle.routiq.v1.User.prototype.hasCreateTime = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 

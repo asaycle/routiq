@@ -21,16 +21,16 @@ const toPbDate = (jsDate: Date): PbDate => {
 
 export const createTouring = async (
     routeID: string | null,
-    title: string,
+    displayName: string,
     date: Date | null,
     score: number = 0,
-    tags: Tag[],
+    tags: string[],
 ): Promise<Touring | null> => {
     const touring = new Touring();
     if (routeID !== null) {
-        touring.setRouteId(routeID);
+        touring.setRoute(`/routes/${routeID}`);
     }
-    touring.setTitle(title);
+    touring.setDisplayName(displayName);
     if (date !== null) {
         touring.setDate(toPbDate(date));
     }
@@ -51,9 +51,9 @@ export const createTouring = async (
     });
 };
 
-export const listRouteTourings = async (routeID: string): Promise<Touring[]> => {
+export const listRouteTourings = async (routeName: string): Promise<Touring[]> => {
     const request = new ListTouringsRequest();
-    request.setFilter(`route_id == "${routeID}"`)
+    request.setFilter(`route_name == "${routeName}"`)
     return new Promise((resolve, reject) => {
         client.listTourings(request, {}, (err, response) => {
             if (err) {

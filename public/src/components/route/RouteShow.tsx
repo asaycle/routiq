@@ -74,8 +74,8 @@ const RouteShow: React.FC = () => {
             <Stack direction="row" spacing={1} flexWrap="wrap">
               {route.getTagCountsList().map((tag) => (
                 <Chip
-                  key={tag.getTag()?.getId()}
-                  label={tag.getTag()?.getName()}
+                  key={tag.getTag()?.getName()}
+                  label={tag.getTag()?.getDisplayName()}
                   color="primary"
                   variant="outlined"
                 />
@@ -97,7 +97,7 @@ const RouteShow: React.FC = () => {
               <Button
                 variant="contained"
                 component={RouterLink}
-                to={`/routes/${route.getId()}/tourings/new`}
+                to={`/${route.getName()}/tourings/new`}
                 color="primary"
                 fullWidth
               >

@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
-	"github.com/asaycle/routiq.git/pkg/domain/repository"
+	"github.com/asaycle/routiq/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/repository"
 	"golang.org/x/xerrors"
 )
 

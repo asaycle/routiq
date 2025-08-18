@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	entity "github.com/asaycle/routiq.git/pkg/domain/entity"
+	entity "github.com/asaycle/routiq/pkg/domain/entity"
 	gomock "github.com/golang/mock/gomock"
 )
 

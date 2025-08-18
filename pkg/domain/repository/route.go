@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/asaycle/routiq.git/pkg/domain/entity"
+	"github.com/asaycle/routiq/pkg/domain/entity"
 	geojson "github.com/paulmach/go.geojson"
 	"golang.org/x/xerrors"
 )
@@ -21,7 +21,7 @@ func fromRouteEntity(route *entity.Route) (*Route, error) {
 	}
 	return &Route{
 		ID:                route.ID,
-		Name:              route.Name,
+		Name:              route.DisplayName,
 		Description:       route.Description,
 		FeatureCollection: featureCollectionJSON,
 		UserID:            route.UserID,
@@ -35,7 +35,7 @@ func toRouteEntity(model *Route) (*entity.Route, error) {
 	}
 	return &entity.Route{
 		ID:                model.ID,
-		Name:              model.Name,
+		DisplayName:       model.Name,
 		Description:       model.Name,
 		FeatureCollection: featureCollection,
 		UserID:            model.UserID,

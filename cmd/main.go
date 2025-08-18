@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/asaycle/routiq.git/cmd/db"
-	"github.com/asaycle/routiq.git/cmd/server"
-	"github.com/asaycle/routiq.git/pkg/lib/config"
-	"github.com/asaycle/routiq.git/pkg/sentry"
+	"github.com/asaycle/routiq/cmd/db"
+	"github.com/asaycle/routiq/cmd/server"
+	"github.com/asaycle/routiq/pkg/lib/config"
+	"github.com/asaycle/routiq/pkg/sentry"
 	"github.com/spf13/cobra"
 	"golang.org/x/xerrors"
 )
