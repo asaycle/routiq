@@ -30,7 +30,8 @@ func (c *DBConfig) GetURL() string {
 }
 
 type AppConfig struct {
-	AuthConfig AuthConfig
+	AuthConfig     AuthConfig
+	LocationConfig LocationConfig
 }
 
 type AuthConfig struct {
@@ -38,6 +39,10 @@ type AuthConfig struct {
 	GoogleClientSecret string `env:"GOOGLE_CLIENT_SECRET"`
 	RedirectURI        string `env:"REDIRECT_URI"`
 	JWTSecret          string `env:"JWT_SECRET"`
+}
+
+type LocationConfig struct {
+	SourceURL string `env:"ROUTIQ_APP_LOCATION_SOURCE_URL" env-default:"https://nlftp.mlit.go.jp/ksj/gml/codelist/AdminiBoundary_CD.xlsx"`
 }
 
 func Load() (*Config, error) {

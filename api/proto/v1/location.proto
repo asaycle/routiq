@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package asaycle.routiq.v1;
+
+option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
+
+import "google/api/resource.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+message Pref {
+  option (google.api.resource) = {
+    type: "asaycle.routiq.v1.Pref"
+    pattern: "prefs/{pref}"
+    singular: "pref"
+    plural: "prefs"
+  };
+
+  string name = 1;  // "prefs/25"
+  string display_name = 2; // 例: "滋賀県"
+}
+
+message City {
+  option (google.api.resource) = {
+    type: "asaycle.routiq.v1.City"
+    pattern: "prefs/{pref}/cities/{city}"
+    singular: "city"
+    plural: "cities"
+  };
+
+  string name = 1;          // "prefs/25/cities/25201"
+  string display_name = 2;  // 例: "大津市"
+
+  // Pref への参照
+  string pref = 3 [(google.api.resource_reference) = {
+    type: "asaycle.routiq.v1.Pref"
+  }];
+}
+
+message Location {
+  option (google.api.resource) = {
+    type: "asaycle.routiq.v1.Location"
+    pattern: "locations/{location}"
+    singular: "location"
+    plural: "locations"
+  };
+
+  string name = 1;         // "locations/{location}"
+  string user_label = 2;   // ユーザーが付けた表示名
+  string place_id = 3;     // Google Place ID
+  double lat = 4;
+  double lng = 5;
+
+  // Pref/City リソース参照
+  string pref = 6 [(google.api.resource_reference) = {
+    type: "asaycle.routiq.v1.Pref"
+  }];
+  string city = 7 [(google.api.resource_reference) = {
+    type: "asaycle.routiq.v1.City"
+  }];
+
+  // 正規化済みラベル（サーバ管理）
+  string user_label_norm = 8;
+}
+
+service LocationService {
+  rpc ListPrefs(ListPrefsRequest) returns (ListPrefsResponse);
+  rpc GetPref(GetPrefRequest) returns (Pref);
+  rpc ListCities(ListCitiesRequest) returns (ListCitiesResponse);
+  rpc GetCity(GetCityRequest) returns (City);
+}
+
+message ListPrefsRequest {
+  int32 page_size = 1;   // 1ページあたりの結果数
+  string page_token = 2; // 次のページへのトークン
+}
+
+message ListPrefsResponse {
+  string next_page_token = 2; // 次のページへのトークン
+}
+
+message GetPrefRequest {
+  string name = 1; // "prefs/25"
+}  
+
+message ListCitiesRequest {
+  string filter = 1; // "prefs/25"
+  int32 page_size = 2;   // 1ページあたりの結果数
+  string page_token = 3; // 次のページへのトークン
+}
+
+message ListCitiesResponse {
+  repeated City cities = 1; // 一覧の都市
+  string next_page_token = 2; // 次のページへのトークン
+}
+
+message GetCityRequest {
+  string name = 1; // "prefs/25/cities/25201"
+}

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/asaycle/routiq/cmd/admin"
 	"github.com/asaycle/routiq/cmd/db"
 	"github.com/asaycle/routiq/cmd/server"
 	"github.com/asaycle/routiq/pkg/lib/config"
@@ -37,6 +38,7 @@ var routiqCmd = &cobra.Command{
 func init() {
 	routiqCmd.AddCommand(server.Command())
 	routiqCmd.AddCommand(db.Command())
+	routiqCmd.AddCommand(admin.Command())
 }
 
 func main() {

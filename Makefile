@@ -49,3 +49,8 @@ JS_PROTO_OUT_DIR = ./public/lib/proto
 proto:
 	buf dep update
 	PATH="${PWD}/bin:$$PATH" buf generate
+
+.PHONY: vendor
+vendor:
+	go mod tidy
+	go mod vendor
