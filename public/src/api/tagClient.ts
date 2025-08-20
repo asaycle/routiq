@@ -1,4 +1,4 @@
-import { TagServiceClient } from '../../lib/proto/v1/TagServiceClientPb';
+import { TagServiceClient } from '../../lib/proto/v1/tag_grpc_web_pb';
 import { CreateTagRequest, ListTagsRequest, Tag } from '../../lib/proto/v1/tag_pb';
 
 // gRPC-Webクライアントを初期化

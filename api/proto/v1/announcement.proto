@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package asaycle.routiq.v1;
+
+option go_package = "github.com/asaycle/routiq/api/proto/v1;routiq";
+
+import "google/api/annotations.proto";
+import "google/api/resource.proto";
+import "google/protobuf/timestamp.proto";
+
+// リソース本体（AIP-122）
+message Announcement {
+  option (google.api.resource) = {
+    type: "asaycle.routiq.v1.Announcement"
+    pattern: "announcements/{announcement}"
+    singular: "announcement"
+    plural: "announcements"
+  };
+
+  // リソース名: announcements/{announcement}
+  string name = 1;
+
+  // 表示用フィールド
+  string title = 2;                          // 必須
+  string body = 3;                           // 詳細説明（任意、マークダウン可）
+
+  // メタ情報
+  google.protobuf.Timestamp create_time = 4; // AIP-142（*_time 命名）
+}
+
+// AIP-132/160 に沿った一覧
+message ListAnnouncementsRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+  string filter = 3;
+}
+
+message ListAnnouncementsResponse {
+  repeated Announcement announcements = 1;
+  string next_page_token = 2;
+}
+
+// 単体取得
+message GetAnnouncementRequest {
+  string name = 1 [(google.api.resource_reference) = {
+    type: "asaycle.routiq.v1.Announcement"
+  }];
+}
+
+// サービス定義
+service AnnouncementService {
+  // GET /v1/announcements
+  rpc ListAnnouncements(ListAnnouncementsRequest) returns (ListAnnouncementsResponse) {
+    option (google.api.http) = { get: "/v1/announcements" };
+  }
+
+  // GET /v1/{name=announcements/*}
+  rpc GetAnnouncement(GetAnnouncementRequest) returns (Announcement) {
+    option (google.api.http) = { get: "/v1/{name=announcements/*}" };
+  }
+}

@@ -1,4 +1,4 @@
-import { AuthServiceClient } from '../../lib/proto/v1/AuthServiceClientPb';
+import { AuthServiceClient } from '../../lib/proto/v1/auth_grpc_web_pb.js';
 import {
   ExchangeOAuthCodeRequest,
   ExchangeOAuthCodeResponse,

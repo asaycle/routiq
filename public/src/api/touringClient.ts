@@ -1,4 +1,4 @@
-import { TouringServiceClient } from '../../lib/proto/v1/TouringServiceClientPb';
+import { TouringServiceClient } from '../../lib/proto/v1/touring_grpc_web_pb';
 import {
     CreateTouringRequest,
     ListTouringsRequest,
