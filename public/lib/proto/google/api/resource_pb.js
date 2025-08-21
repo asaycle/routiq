@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = globalThis;
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var google_protobuf_descriptor_pb = require('google-protobuf/google/protobuf/descriptor_pb.js');
 goog.object.extend(proto, google_protobuf_descriptor_pb);
@@ -105,13 +111,13 @@ proto.google.api.ResourceDescriptor.prototype.toObject = function(opt_includeIns
  */
 proto.google.api.ResourceDescriptor.toObject = function(includeInstance, msg) {
   var f, obj = {
-type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-patternList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-nameField: jspb.Message.getFieldWithDefault(msg, 3, ""),
-history: jspb.Message.getFieldWithDefault(msg, 4, 0),
-plural: jspb.Message.getFieldWithDefault(msg, 5, ""),
-singular: jspb.Message.getFieldWithDefault(msg, 6, ""),
-styleList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    patternList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+    nameField: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    history: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    plural: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    singular: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    styleList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -149,15 +155,15 @@ proto.google.api.ResourceDescriptor.deserializeBinaryFromReader = function(msg, 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.addPattern(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setNameField(value);
       break;
     case 4:
@@ -165,15 +171,18 @@ proto.google.api.ResourceDescriptor.deserializeBinaryFromReader = function(msg, 
       msg.setHistory(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPlural(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setSingular(value);
       break;
     case 10:
-      reader.readPackableEnumInto(msg.getStyleList());
+      var values = /** @type {!Array<!proto.google.api.ResourceDescriptor.Style>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addStyle(values[i]);
+      }
       break;
     default:
       reader.skipField();
@@ -469,8 +478,8 @@ proto.google.api.ResourceReference.prototype.toObject = function(opt_includeInst
  */
 proto.google.api.ResourceReference.toObject = function(includeInstance, msg) {
   var f, obj = {
-type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-childType: jspb.Message.getFieldWithDefault(msg, 2, "")
+    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    childType: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -508,11 +517,11 @@ proto.google.api.ResourceReference.deserializeBinaryFromReader = function(msg, r
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setChildType(value);
       break;
     default:

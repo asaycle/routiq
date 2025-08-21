@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = globalThis;
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -141,8 +147,8 @@ proto.asaycle.routiq.v1.User.prototype.toObject = function(opt_includeInstance) 
  */
 proto.asaycle.routiq.v1.User.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -180,7 +186,7 @@ proto.asaycle.routiq.v1.User.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     case 3:
@@ -322,7 +328,7 @@ proto.asaycle.routiq.v1.GetUserRequest.prototype.toObject = function(opt_include
  */
 proto.asaycle.routiq.v1.GetUserRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -360,7 +366,7 @@ proto.asaycle.routiq.v1.GetUserRequest.deserializeBinaryFromReader = function(ms
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setId(value);
       break;
     default:
@@ -452,9 +458,9 @@ proto.asaycle.routiq.v1.ListUsersRequest.prototype.toObject = function(opt_inclu
  */
 proto.asaycle.routiq.v1.ListUsersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+    filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -492,7 +498,7 @@ proto.asaycle.routiq.v1.ListUsersRequest.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setFilter(value);
       break;
     case 2:
@@ -500,7 +506,7 @@ proto.asaycle.routiq.v1.ListUsersRequest.deserializeBinaryFromReader = function(
       msg.setPageSize(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
     default:
@@ -649,9 +655,9 @@ proto.asaycle.routiq.v1.ListUsersResponse.prototype.toObject = function(opt_incl
  */
 proto.asaycle.routiq.v1.ListUsersResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-usersList: jspb.Message.toObjectList(msg.getUsersList(),
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
     proto.asaycle.routiq.v1.User.toObject, includeInstance),
-nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -694,7 +700,7 @@ proto.asaycle.routiq.v1.ListUsersResponse.deserializeBinaryFromReader = function
       msg.addUsers(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
     default:

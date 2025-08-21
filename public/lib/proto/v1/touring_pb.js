@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = globalThis;
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -199,16 +205,16 @@ proto.asaycle.routiq.v1.Touring.prototype.toObject = function(opt_includeInstanc
  */
 proto.asaycle.routiq.v1.Touring.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-route: jspb.Message.getFieldWithDefault(msg, 2, ""),
-tagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-date: (f = msg.getDate()) && google_type_date_pb.Date.toObject(includeInstance, f),
-displayName: jspb.Message.getFieldWithDefault(msg, 5, ""),
-note: jspb.Message.getFieldWithDefault(msg, 6, ""),
-score: jspb.Message.getFieldWithDefault(msg, 7, 0),
-userId: jspb.Message.getFieldWithDefault(msg, 8, ""),
-createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-updateTime: (f = msg.getUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    route: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    tagsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    date: (f = msg.getDate()) && google_type_date_pb.Date.toObject(includeInstance, f),
+    displayName: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    note: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    score: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    userId: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updateTime: (f = msg.getUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -246,15 +252,15 @@ proto.asaycle.routiq.v1.Touring.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setRoute(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.addTags(value);
       break;
     case 4:
@@ -263,11 +269,11 @@ proto.asaycle.routiq.v1.Touring.deserializeBinaryFromReader = function(msg, read
       msg.setDate(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setDisplayName(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setNote(value);
       break;
     case 7:
@@ -275,7 +281,7 @@ proto.asaycle.routiq.v1.Touring.deserializeBinaryFromReader = function(msg, read
       msg.setScore(value);
       break;
     case 8:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setUserId(value);
       break;
     case 9:
@@ -681,8 +687,8 @@ proto.asaycle.routiq.v1.CreateTouringRequest.prototype.toObject = function(opt_i
  */
 proto.asaycle.routiq.v1.CreateTouringRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
-touring: (f = msg.getTouring()) && proto.asaycle.routiq.v1.Touring.toObject(includeInstance, f)
+    parent: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    touring: (f = msg.getTouring()) && proto.asaycle.routiq.v1.Touring.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -720,7 +726,7 @@ proto.asaycle.routiq.v1.CreateTouringRequest.deserializeBinaryFromReader = funct
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setParent(value);
       break;
     case 2:
@@ -862,10 +868,10 @@ proto.asaycle.routiq.v1.ListTouringsRequest.prototype.toObject = function(opt_in
  */
 proto.asaycle.routiq.v1.ListTouringsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-view: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    view: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -903,7 +909,7 @@ proto.asaycle.routiq.v1.ListTouringsRequest.deserializeBinaryFromReader = functi
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setFilter(value);
       break;
     case 2:
@@ -911,7 +917,7 @@ proto.asaycle.routiq.v1.ListTouringsRequest.deserializeBinaryFromReader = functi
       msg.setPageSize(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
     case 4:
@@ -1089,10 +1095,10 @@ proto.asaycle.routiq.v1.ListTouringsResponse.prototype.toObject = function(opt_i
  */
 proto.asaycle.routiq.v1.ListTouringsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-touringsList: jspb.Message.toObjectList(msg.getTouringsList(),
+    touringsList: jspb.Message.toObjectList(msg.getTouringsList(),
     proto.asaycle.routiq.v1.Touring.toObject, includeInstance),
-includedTagsMap: (f = msg.getIncludedTagsMap()) ? f.toObject(includeInstance, proto.asaycle.routiq.v1.Tag.toObject) : [],
-nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+    includedTagsMap: (f = msg.getIncludedTagsMap()) ? f.toObject(includeInstance, proto.asaycle.routiq.v1.Tag.toObject) : [],
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1137,11 +1143,11 @@ proto.asaycle.routiq.v1.ListTouringsResponse.deserializeBinaryFromReader = funct
     case 2:
       var value = msg.getIncludedTagsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readStringRequireUtf8, jspb.BinaryReader.prototype.readMessage, proto.asaycle.routiq.v1.Tag.deserializeBinaryFromReader, "", new proto.asaycle.routiq.v1.Tag());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.asaycle.routiq.v1.Tag.deserializeBinaryFromReader, "", new proto.asaycle.routiq.v1.Tag());
          });
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
     default:
@@ -1183,13 +1189,7 @@ proto.asaycle.routiq.v1.ListTouringsResponse.serializeBinaryToWriter = function(
   }
   f = message.getIncludedTagsMap(true);
   if (f && f.getLength() > 0) {
-jspb.internal.public_for_gencode.serializeMapToBinary(
-    message.getIncludedTagsMap(true),
-    2,
-    writer,
-    jspb.BinaryWriter.prototype.writeString,
-    jspb.BinaryWriter.prototype.writeMessage,
-    proto.asaycle.routiq.v1.Tag.serializeBinaryToWriter);
+    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.asaycle.routiq.v1.Tag.serializeBinaryToWriter);
   }
   f = message.getNextPageToken();
   if (f.length > 0) {
@@ -1258,8 +1258,7 @@ proto.asaycle.routiq.v1.ListTouringsResponse.prototype.getIncludedTagsMap = func
  */
 proto.asaycle.routiq.v1.ListTouringsResponse.prototype.clearIncludedTagsMap = function() {
   this.getIncludedTagsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**
@@ -1312,8 +1311,8 @@ proto.asaycle.routiq.v1.GetTouringRequest.prototype.toObject = function(opt_incl
  */
 proto.asaycle.routiq.v1.GetTouringRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-view: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    view: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -1351,7 +1350,7 @@ proto.asaycle.routiq.v1.GetTouringRequest.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     case 2:
@@ -1472,8 +1471,8 @@ proto.asaycle.routiq.v1.GetTouringResponse.prototype.toObject = function(opt_inc
  */
 proto.asaycle.routiq.v1.GetTouringResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-touring: (f = msg.getTouring()) && proto.asaycle.routiq.v1.Touring.toObject(includeInstance, f),
-includedTagsMap: (f = msg.getIncludedTagsMap()) ? f.toObject(includeInstance, proto.asaycle.routiq.v1.Tag.toObject) : []
+    touring: (f = msg.getTouring()) && proto.asaycle.routiq.v1.Touring.toObject(includeInstance, f),
+    includedTagsMap: (f = msg.getIncludedTagsMap()) ? f.toObject(includeInstance, proto.asaycle.routiq.v1.Tag.toObject) : []
   };
 
   if (includeInstance) {
@@ -1518,7 +1517,7 @@ proto.asaycle.routiq.v1.GetTouringResponse.deserializeBinaryFromReader = functio
     case 2:
       var value = msg.getIncludedTagsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readStringRequireUtf8, jspb.BinaryReader.prototype.readMessage, proto.asaycle.routiq.v1.Tag.deserializeBinaryFromReader, "", new proto.asaycle.routiq.v1.Tag());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.asaycle.routiq.v1.Tag.deserializeBinaryFromReader, "", new proto.asaycle.routiq.v1.Tag());
          });
       break;
     default:
@@ -1560,13 +1559,7 @@ proto.asaycle.routiq.v1.GetTouringResponse.serializeBinaryToWriter = function(me
   }
   f = message.getIncludedTagsMap(true);
   if (f && f.getLength() > 0) {
-jspb.internal.public_for_gencode.serializeMapToBinary(
-    message.getIncludedTagsMap(true),
-    2,
-    writer,
-    jspb.BinaryWriter.prototype.writeString,
-    jspb.BinaryWriter.prototype.writeMessage,
-    proto.asaycle.routiq.v1.Tag.serializeBinaryToWriter);
+    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.asaycle.routiq.v1.Tag.serializeBinaryToWriter);
   }
 };
 
@@ -1627,8 +1620,7 @@ proto.asaycle.routiq.v1.GetTouringResponse.prototype.getIncludedTagsMap = functi
  */
 proto.asaycle.routiq.v1.GetTouringResponse.prototype.clearIncludedTagsMap = function() {
   this.getIncludedTagsMap().clear();
-  return this;
-};
+  return this;};
 
 
 /**

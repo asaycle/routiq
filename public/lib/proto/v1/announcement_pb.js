@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = globalThis;
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -141,10 +147,10 @@ proto.asaycle.routiq.v1.Announcement.prototype.toObject = function(opt_includeIn
  */
 proto.asaycle.routiq.v1.Announcement.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-title: jspb.Message.getFieldWithDefault(msg, 2, ""),
-body: jspb.Message.getFieldWithDefault(msg, 3, ""),
-createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    title: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    body: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -182,15 +188,15 @@ proto.asaycle.routiq.v1.Announcement.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setTitle(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setBody(value);
       break;
     case 4:
@@ -382,9 +388,9 @@ proto.asaycle.routiq.v1.ListAnnouncementsRequest.prototype.toObject = function(o
  */
 proto.asaycle.routiq.v1.ListAnnouncementsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-filter: jspb.Message.getFieldWithDefault(msg, 3, "")
+    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    filter: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -426,11 +432,11 @@ proto.asaycle.routiq.v1.ListAnnouncementsRequest.deserializeBinaryFromReader = f
       msg.setPageSize(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setFilter(value);
       break;
     default:
@@ -579,9 +585,9 @@ proto.asaycle.routiq.v1.ListAnnouncementsResponse.prototype.toObject = function(
  */
 proto.asaycle.routiq.v1.ListAnnouncementsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-announcementsList: jspb.Message.toObjectList(msg.getAnnouncementsList(),
+    announcementsList: jspb.Message.toObjectList(msg.getAnnouncementsList(),
     proto.asaycle.routiq.v1.Announcement.toObject, includeInstance),
-nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -624,7 +630,7 @@ proto.asaycle.routiq.v1.ListAnnouncementsResponse.deserializeBinaryFromReader = 
       msg.addAnnouncements(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
     default:
@@ -762,7 +768,7 @@ proto.asaycle.routiq.v1.GetAnnouncementRequest.prototype.toObject = function(opt
  */
 proto.asaycle.routiq.v1.GetAnnouncementRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -800,7 +806,7 @@ proto.asaycle.routiq.v1.GetAnnouncementRequest.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     default:

@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = globalThis;
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var google_api_annotations_pb = require('../google/api/annotations_pb.js');
 goog.object.extend(proto, google_api_annotations_pb);
@@ -139,8 +145,8 @@ proto.asaycle.routiq.v1.Tag.prototype.toObject = function(opt_includeInstance) {
  */
 proto.asaycle.routiq.v1.Tag.toObject = function(includeInstance, msg) {
   var f, obj = {
-name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-displayName: jspb.Message.getFieldWithDefault(msg, 2, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    displayName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -178,11 +184,11 @@ proto.asaycle.routiq.v1.Tag.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setDisplayName(value);
       break;
     default:
@@ -299,7 +305,7 @@ proto.asaycle.routiq.v1.CreateTagRequest.prototype.toObject = function(opt_inclu
  */
 proto.asaycle.routiq.v1.CreateTagRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-tag: (f = msg.getTag()) && proto.asaycle.routiq.v1.Tag.toObject(includeInstance, f)
+    tag: (f = msg.getTag()) && proto.asaycle.routiq.v1.Tag.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -450,9 +456,9 @@ proto.asaycle.routiq.v1.ListTagsRequest.prototype.toObject = function(opt_includ
  */
 proto.asaycle.routiq.v1.ListTagsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
-pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
+    filter: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -490,7 +496,7 @@ proto.asaycle.routiq.v1.ListTagsRequest.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setFilter(value);
       break;
     case 2:
@@ -498,7 +504,7 @@ proto.asaycle.routiq.v1.ListTagsRequest.deserializeBinaryFromReader = function(m
       msg.setPageSize(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setPageToken(value);
       break;
     default:
@@ -647,9 +653,9 @@ proto.asaycle.routiq.v1.ListTagsResponse.prototype.toObject = function(opt_inclu
  */
 proto.asaycle.routiq.v1.ListTagsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-tagsList: jspb.Message.toObjectList(msg.getTagsList(),
+    tagsList: jspb.Message.toObjectList(msg.getTagsList(),
     proto.asaycle.routiq.v1.Tag.toObject, includeInstance),
-nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -692,7 +698,7 @@ proto.asaycle.routiq.v1.ListTagsResponse.deserializeBinaryFromReader = function(
       msg.addTags(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readStringRequireUtf8());
+      var value = /** @type {string} */ (reader.readString());
       msg.setNextPageToken(value);
       break;
     default:

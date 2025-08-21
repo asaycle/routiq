@@ -1,4 +1,4 @@
-import { RouteServiceClient } from '../../lib/proto/v1/route_grpc_web_pb';
+import { RouteServiceClient } from '../../lib/proto/v1/RouteServiceClientPb';
 import { CreateRouteRequest, GetRouteRequest, ListRoutesRequest, Route } from '../../lib/proto/v1/route_pb';
 import { createMetadata, handleGrpcError } from "./common";
 

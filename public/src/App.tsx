@@ -12,10 +12,10 @@ function App() {
   return (
     <RoleProvider>
       <Router basename="/">
-      <Navigation />
-      <Container>
-        <AppRoutes />
-      </Container>
+        <Navigation />
+        <Container sx={{ mt: 2 }}>
+          <AppRoutes />
+        </Container>
       </Router>
     </RoleProvider>
   );

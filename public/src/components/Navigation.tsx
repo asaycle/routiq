@@ -1,6 +1,6 @@
 // src/components/Navigation.tsx
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useRole } from '../contexts/RoleContext';
 
@@ -9,28 +9,32 @@ const Navigation: React.FC = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h6"
+          component={Link}
+          to="/"
+          sx={{
+            flexGrow: 1,
+            textDecoration: 'none',
+            color: 'inherit',
+          }}
+        >
           Routiq
         </Typography>
-        <Button color="inherit" component={Link} to="/">
-          Home
-        </Button>
         <Button color="inherit" component={Link} to="/tags">
-          Tags
+          タグから探す
         </Button>
         <Button color="inherit" component={Link} to="/routes">
-          Routes
+          ルート一覧
         </Button>
         {role === 'guest' ? (
           <Button color="inherit" component={Link} to="/login">
-            Login
+            ログイン
           </Button>
         ) : (
-          <>
-            <Button color="inherit" onClick={logout}>
-              Logout
-            </Button>
-          </>
+          <Button color="inherit" onClick={logout}>
+            ログアウト
+          </Button>
         )}
       </Toolbar>
     </AppBar>

@@ -9,16 +9,18 @@ import (
 	"github.com/asaycle/routiq/pkg/lib/config"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type AnnouncementHandler struct {
-	pb.UnimplementedRouteServiceServer
+	pb.UnimplementedAnnouncementServiceServer
 	cfg     *config.Config
 	useCase usecase.ListAnnouncementsUsecase
 }
 
 func ActivateAnnouncementHandler(s *grpc.Server, cfg *config.Config) {
-	pb.RegisterRouteServiceServer(s, NewAnnouncementHandler(cfg))
+	pb.RegisterAnnouncementServiceServer(s, NewAnnouncementHandler(cfg))
 }
 
 func NewAnnouncementHandler(cfg *config.Config) *AnnouncementHandler {
@@ -40,4 +42,8 @@ func (h *AnnouncementHandler) ListAnnouncements(ctx context.Context, req *pb.Lis
 	}
 
 	return &pb.ListAnnouncementsResponse{Announcements: pbAnns}, nil
+}
+
+func (h *AnnouncementHandler) GetAnnouncement(ctx context.Context, req *pb.GetAnnouncementRequest) (*pb.Announcement, error) {
+	return nil, status.Error(codes.Unimplemented, "GetAnnouncement not implemented")
 }

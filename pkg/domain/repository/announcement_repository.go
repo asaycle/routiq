@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/asaycle/routiq/pkg/domain/entity"
 	"golang.org/x/xerrors"
@@ -16,7 +17,8 @@ type AnnouncementRepository interface {
 }
 
 func NewAnnouncementRepository() AnnouncementRepository {
-	anns, err := loadAnnouncements("announcements.yml")
+	filepath := filepath.Join("announcements.yml")
+	anns, err := loadAnnouncements(filepath)
 	if err != nil {
 		panic("Failed to load announcements")
 	}
@@ -55,9 +57,8 @@ func loadAnnouncements(path string) ([]*entity.Announcement, error) {
 		return nil, fmt.Errorf("unmarshal yaml: %w", err)
 	}
 
-	announcements := make([]*entity.Announcement, 0, len(raw))
+	announcements := make([]*entity.Announcement, len(raw))
 	for i, r := range raw {
-
 		ann, err := r.toEntity()
 		if err != nil {
 			return nil, xerrors.Errorf("convert to entity: %w", err)
