@@ -21,6 +21,7 @@ WORKDIR /app
 COPY --from=builder /app/app /app/app
 COPY ./db/migration /app/migrations
 COPY ./entrypoint.sh /app/entrypoint.sh
+COPY ./announcements.yml /app/announcements.yml
 RUN chmod +x /app/entrypoint.sh
 
 ENTRYPOINT ["/app/entrypoint.sh"]
