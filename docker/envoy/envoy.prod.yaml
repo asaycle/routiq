@@ -33,6 +33,10 @@ static_resources:
                         allow_credentials: true
                       routes:
                         - match:
+                            prefix: "/asaycle.routiq.v1.AnnouncementService/"
+                          route:
+                            cluster: grpc_backend
+                        - match:
                             prefix: "/asaycle.routiq.v1.AuthService/"
                           route:
                             cluster: grpc_backend
